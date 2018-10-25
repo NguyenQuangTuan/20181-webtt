@@ -1,0 +1,8 @@
+# Gulp
+client/assets/css/compiled/
+client/public/
+client/views/components/head.ejs
+client/views/components/script.ejs
+
+# Dependency directories
+node_modules/
