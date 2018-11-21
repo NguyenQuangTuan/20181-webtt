@@ -2,9 +2,8 @@ const express = require('express')
 const path = require('path')
 const logger = require('morgan')
 const cors = require('cors')
-const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser')
-const config = require('./config/config')
+const cookie_parser = require('cookie-parser')
+const body_parser = require('body-parser')
 
 const app = express()
 
@@ -14,10 +13,10 @@ app.set('view engine', 'ejs')
 
 app.use(cors())
 app.use(logger('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser())
-app.use('/product_widgets', express.static(path.join(__dirname, '../client/public')))
+app.use(body_parser.json())
+app.use(body_parser.urlencoded({ extended: false }))
+app.use(cookie_parser())
+app.use(express.static(path.join(__dirname, '../client/public')))
 
 // require('./middlewares/middleware')(app)
 
@@ -27,13 +26,12 @@ const ProductService = require('./services/product-service')
 const product_service = new ProductService()
 
 // Controllers
-const ProductController = require('./controllers/product-controller')
+const HomeController = require('./controllers/home-controller')
 
-const product_controller = new ProductController(product_service)
+const home_controller = new HomeController(product_service)
 
 // Routes
-
-require('./routes/product-route')(app, product_controller)
+require('./routes/home-route')(app, home_controller)
 
 // Locals
 require('./locals/locals')(app.locals)
@@ -49,7 +47,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message
-  res.locals.error = (req.app.get('env') === 'development'/*  || req.app.get('env') === 'local' */) ? err : {}
+  res.locals.error = (req.app.get('env') === 'development' || req.app.get('env') === 'local') ? err : {}
 
   // render the error page
   res.status(err.status || 500)

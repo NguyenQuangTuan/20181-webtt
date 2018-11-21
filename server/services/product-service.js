@@ -1,19 +1,31 @@
 const unirest = require('unirest')
+const { api_url } = require('../config/index')
 
-module.exports = class ProductController {
+module.exports = class ProductService {
   constructor() {
-    this.retrieve_all(condition, select = null, offset = 0, limit = 20, (err, products))
+    this.retrieve_all = this.retrieve_all.bind(this)
+    this.retrieve_one = this.retrieve_one.bind(this)
   }
 
-  retrieve_all(condition, select = null, offset = 0, limit = 20, sort = '-created_at', callback) {
+  retrieve_all(select = null, offset = 0, limit = 10, callback) {
     let url = `${api_url}/products`
-
     let req = unirest.get(url)
-      .req.query({
+      .query({
         fields: select,
-        offset, limit, sort
+        offset, limit
       })
 
-    req.end(res => callback(res.error, res.body.banners))
+    req.end(res => {
+      return callback(res.error, res.body.products)
+    })
+  }
+
+  retrieve_one(product_id) {
+    let url = `${api_url}/products/${product_id}`
+    let req = unirest.get(url)
+
+    req.end(res => {
+      return callback(res.error, res.body.product)
+    })
   }
 }

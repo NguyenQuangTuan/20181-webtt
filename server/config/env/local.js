@@ -1,5 +1,4 @@
 module.exports = {
-  port: 8081,
-  api_url: '',
-  hook_url: '',
+  port: 8082,
+  api_url: 'http://3.16.30.223:8181',
 }

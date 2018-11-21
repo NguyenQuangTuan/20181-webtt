@@ -1,17 +1,21 @@
-module.exports = class ReviewController {
-  constructor(review_service) {
-    this.review_service = review_service
+module.exports = class HomeController {
+  constructor(product_service) {
+    this.product_service = product_service
 
-    this.get_all_reviews = this.get_all_reviews.bind(this)
+    this.get_list_products = this.get_list_products.bind(this)
   }
 
-  get_all_reviews(req, res, next) {
-    this.review_service.retrieve_all(condition, select, offset, limit, sort, (err, reviews) => {
-      if (err) next(err)
+  get_list_products(req, res, next) {
+    this.product_service.retrieve_all(null, 0, 10, (err, products) => {
+      if (err) {
+        res.products = []
+        next()
+      }
       else {
-        res.reviews = reviews
+        res.products = products
         next()
       }
     })
   }
+
 }

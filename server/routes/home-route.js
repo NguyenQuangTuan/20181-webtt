@@ -1,13 +1,14 @@
-module.exports = (app) => {
+module.exports = (app, home_controller) => {
   app.get('/home',
-    home_controller.get_all_products,
+    home_controller.get_list_products,
     (req, res, next) => {
-      return res.render('home/home', {
-        title: 'Home',
+      let { products } = res
+      res.render('home', {
+        title: 'Sales Page',
         header_title: [
-          { 'Home': '#' }
+          { 'Products': '#' }
         ],
-        // Có thể gửi thêm các dữ liệu khác ở đây
+        products
       })
     }
   )

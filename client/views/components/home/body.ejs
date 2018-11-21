@@ -1,0 +1,28 @@
+<p>Hello</p>
+<button type="button" class="btn btn-warning show-product">Show Product</button>
+<table class="table mt-1">
+  <thead>
+    <tr>
+      <th width="10%" scope="col">#</th>
+      <th width="40%" scope="col">Title</th>
+      <th width="30%" scope="col">Price</th>
+      <th width="20%" scope="col">Compared price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%locals.products.forEach(product => {%>
+    <tr>
+      <td>1</th>
+      <td>
+        <%= product.title%>
+      </td>
+      <td>
+        <%= product.price%>
+      </td>
+      <td>
+        <%= product.compared_price%>
+      </td>
+    </tr>
+    <%})%>
+  </tbody>
+</table>
