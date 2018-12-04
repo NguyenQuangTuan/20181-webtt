@@ -30,3 +30,48 @@
 .single-post .new-view span i {
     color: #CCCCCC;
 }
+
+.meta-profile{
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 20px;
+}
+
+.meta-profile label{
+    color: #337ab7;
+    font-size: 25px;
+}
+
+.suggest-title{
+    margin-top: 15px;
+}
+
+.suggest-title i{
+    font-size: 20px;
+    color: #EE8262;
+}
+
+.suggest-title li a {
+    color: #333;
+    background:#CFCFCF;
+    font-size: 14px;
+    // text-transform: uppercase;
+    padding: 5px;
+    display: block;
+    position: relative;
+    text-shadow: none;
+    border-radius: 5px;
+}
+
+.suggest-title li {
+    float: left;
+    position: relative;
+    margin: 5px;
+    list-style-type: none;
+}
+
+.suggest-title li:hover a, 
+.suggest-title li.active a {
+    cursor: pointer;
+    text-decoration: none;
+    
+}

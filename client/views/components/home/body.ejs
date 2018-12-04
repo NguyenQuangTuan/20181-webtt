@@ -24,7 +24,8 @@
           <div class="single-post">
             <% posts.map(post => { %>
             <div class="new-view">
-              <label><%= post.title %></label>
+              <label>
+                <%= post.title %></label>
               <span><i class="fa fa-bookmark" aria-hidden="true"></i></span>
               <span><i class="fa fa-comment" aria-hidden="true"></i></span>
               <p>
@@ -35,7 +36,7 @@
               </p>
             </div>
             <% } )%>
-            
+
           </div>
         </div>
         <!-- New Post -->
@@ -43,11 +44,39 @@
           <div class="single-post">
           </div>
         </div>
+        <!-- End new post -->
         <!-- Love Post -->
         <div class="tab-pane" id="newLove" role="tabpanel" aria-labelledby="newExam-tab">
           <div class="single-post">
           </div>
         </div>
-        <div class="col-sm-3"></div>
+        <!-- End love post -->
       </div>
     </div>
+    <div class="col-sm-1"></div>
+    <!-- Ca nhan -->
+    <div class="col-sm-3">
+      <div class="chude">
+        <div class="meta-profile">
+          <div class="row">
+            <div class="col-sm-5">
+              <img src="" alt="ảnh">
+            </div>
+            <div class="col-sm-7">
+              <p><label>Huyen Haru</label></p>
+              <span>0 bài viết</span><br>
+              <span>0 người theo dõi</span>
+            </div>
+          </div>
+        </div>
+        <div class="suggest-title">
+          <i class="fa fa-tags" aria-hidden="true">&nbsp&nbsp<i style="color: #333;">Chủ đề nổi bật</i></i>
+          <ul>
+            <li><a>huyenharu</a></li>
+            <li><a>haruharu</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
