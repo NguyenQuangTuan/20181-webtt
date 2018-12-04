@@ -1,3 +1,1 @@
-$('.show-product').click(function () {
-  alert('alo')
-})
+$('#myTab li:first-child a').tab('show');

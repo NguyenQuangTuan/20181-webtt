@@ -1,0 +1,116 @@
+.header{
+    background: #008B8B;
+    z-index: 3333;
+}
+
+.navbar-collapse{
+    margin: 10px 50px 10px 60px;
+}
+.header h1{
+    color: #fff;
+    margin: 0;
+
+    margin-right: 10px;
+}
+.header .navbar {
+    background: none;
+    box-shadow: none;
+    border: none;
+    position: relative;
+    padding: 0;
+}
+.navbar-nav {
+    display: block;
+}
+
+.header .nav li {
+    float: left;
+    position: relative;
+    margin-right: 5px;
+}
+
+// .header .nav li:last-child{
+//     margin-right:5rem;
+// }
+.header .nav li a {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 10px;
+    display: block;
+    position: relative;
+    text-shadow: none;
+}
+.header .nav li:hover a, 
+.header .nav li.active a {
+    color: #363636;
+    background:#CFCFCF;
+    text-decoration: none;
+}
+.header .nav li a i {
+    margin-left: 5px;
+}
+.header .nav li .dropdown {
+    background: #fff;
+    width: 180px;
+    position: absolute;
+    float: right;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    transform:scale(0.5);
+    -webkit-box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+.header .nav li:hover .dropdown{
+    transform:scale(1.0);
+    opacity:1;
+    visibility:visible;
+}
+.header .nav li .dropdown p{
+    float:none;
+    margin-left: 0px;
+    /*list-style-type: none;*/
+    padding: 0;
+}
+.header .nav li .dropdown p a {
+    color: #4F4F4F;
+    display: block;
+    font-weight: 400;
+    text-transform: capitalize;
+    background: transparent;
+}
+.header .nav li .dropdown p i{
+    float:left;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.header .nav li .dropdown p:hover a{
+    color:#363636;
+    background:#CFCFCF;
+    text-decoration: none;
+}
+
+.header .nav .search .input{
+    margin-top: 5px;
+    border-radius: 25px;
+}
+
+.header .nav .navbar-nav span {
+    margin-top: 30px; 
+}
+
+.header .nav .navbar-nav img {
+    margin-top: 10px;
+    height: 10px;
+    padding-right: 2px;
+    border-radius: 50%; 
+    width: 10px; 
+}

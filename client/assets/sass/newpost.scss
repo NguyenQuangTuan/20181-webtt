@@ -1,0 +1,52 @@
+.newpost{
+    margin: 30px 20px 0px 30px;
+}
+
+.newpost .input input{
+    width: 100%;
+    padding: 0.65rem 0.5rem;
+    border: none;
+    transition: none;
+    outline: none;
+}
+
+.newpost .input.huge {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.newpost .write{
+    border: 1px solid #cccccc;
+    height: 500px;
+    margin: 20px 0px 20px 0px; 
+}
+
+.newpost .anh i{
+    color: #00CC00;
+    margin-bottom: 20px;
+}
+
+.button button{
+    float:right;
+    padding: 10px;   
+    border-radius: 10px;
+    margin-bottom: 20px; 
+    min-height: 1rem;
+    outline: none;
+    border: none;
+    line-height: 1;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12),0 1px 6px rgba(0,0,0,0.12);
+}
+
+.button #luunhap{
+    border: 1px solid #00B5AD;
+    color: #00B5AD;
+    background: white;
+}
+
+.button #dangbai{
+    background: #00B5AD;
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+}

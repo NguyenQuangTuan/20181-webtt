@@ -1,28 +1,53 @@
-<p>Hello</p>
-<button type="button" class="btn btn-warning show-product">Show Product</button>
-<table class="table mt-1">
-  <thead>
-    <tr>
-      <th width="10%" scope="col">#</th>
-      <th width="40%" scope="col">Title</th>
-      <th width="30%" scope="col">Price</th>
-      <th width="20%" scope="col">Compared price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%locals.products.forEach(product => {%>
-    <tr>
-      <td>1</th>
-      <td>
-        <%= product.title%>
-      </td>
-      <td>
-        <%= product.price%>
-      </td>
-      <td>
-        <%= product.compared_price%>
-      </td>
-    </tr>
-    <%})%>
-  </tbody>
-</table>
+<div class="content">
+  <div class="row">
+    <div class="col-sm-8">
+      <span><b>" Programming is like sex: one mistake and you have to support it for the rest of your life. "</b> -<i>Michael
+          Sinz</i></span>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="manyView-tab" data-toggle="tab" href="#newView" role="tab" aria-controls="home"
+            aria-selected="true">Bài viết hay</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="manyPost-tab" data-toggle="tab" href="#newPost" role="tab" aria-controls="profile"
+            aria-selected="false">Bài viết mới</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="manyLove-tab" data-toggle="tab" href="#newLove" role="tab" aria-controls="love"
+            aria-selected="false">Bài viết yêu thích</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <!-- New View -->
+        <div class="tab-pane" id="newView" role="tabpanel" aria-labelledby="manyView-tab">
+          <div class="single-post">
+            <% posts.map(post => { %>
+            <div class="new-view">
+              <label><%= post.title %></label>
+              <span><i class="fa fa-bookmark" aria-hidden="true"></i></span>
+              <span><i class="fa fa-comment" aria-hidden="true"></i></span>
+              <p>
+                <%= post.short_content%>
+              </p>
+              <p>
+                <%= locals.settingTab%>
+              </p>
+            </div>
+            <% } )%>
+            
+          </div>
+        </div>
+        <!-- New Post -->
+        <div class="tab-pane active" id="newPost" role="tabpanel" aria-labelledby="newExam-tab">
+          <div class="single-post">
+          </div>
+        </div>
+        <!-- Love Post -->
+        <div class="tab-pane" id="newLove" role="tabpanel" aria-labelledby="newExam-tab">
+          <div class="single-post">
+          </div>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+    </div>

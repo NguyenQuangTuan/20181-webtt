@@ -1,0 +1,32 @@
+.content{
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 0px;
+}
+
+.nav#myTab {
+    margin-top: 30px;
+}
+
+.active .nav-link{
+    font-weight: 700;
+}
+
+.single-post .new-view{
+    border-bottom: 1px solid #CCCCCC; 
+    margin-top: 20px;
+}
+
+.single-post .new-view label {
+    margin-right: 520px;
+    color: #337ab7;
+    font-size: 20px;
+}
+
+.single-post .new-view span {
+    margin: 10px;
+}
+
+.single-post .new-view span i {
+    color: #CCCCCC;
+}
