@@ -12,23 +12,36 @@
     font-weight: 700;
 }
 
+.nav-tabs li a{
+    color: #333;
+}
+
 .single-post .new-view{
     border-bottom: 1px solid #CCCCCC; 
     margin-top: 20px;
 }
 
 .single-post .new-view label {
-    margin-right: 520px;
-    color: #337ab7;
+    margin-right: 530px;
+    color: #00b5ad;
     font-size: 20px;
 }
 
-.single-post .new-view span {
-    margin: 10px;
+.new-view a:hover label{
+    cursor: pointer;
+    color: #337ab7;
 }
+
+// .single-post .new-view span {
+//     margin: 5px;
+// }
 
 .single-post .new-view span i {
     color: #CCCCCC;
+}
+
+.note{
+    margin-top: 10px;
 }
 
 .meta-profile{
@@ -37,8 +50,16 @@
 }
 
 .meta-profile label{
-    color: #337ab7;
+    margin-top: 10px; 
+    color: #00b5ad;
     font-size: 25px;
+}
+
+.meta-profile img {
+    height: 100px;
+    padding-right: 2px;
+    border-radius: 50%; 
+    width: 105px; 
 }
 
 .suggest-title{

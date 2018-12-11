@@ -33,7 +33,7 @@ const home_controller = new HomeController(product_service)
 // Routes
 require('./routes/home-route')(app, home_controller)
 require('./routes/post-route')(app)
-
+require('./routes/detail-route')(app)
 // Locals
 require('./locals/locals')(app.locals)
 

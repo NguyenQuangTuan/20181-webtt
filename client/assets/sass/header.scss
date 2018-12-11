@@ -43,9 +43,16 @@
 }
 .header .nav li:hover a, 
 .header .nav li.active a {
-    color: #363636;
-    background:#CFCFCF;
+    color: #fff;
+    background:rgb(22, 168, 173);
     text-decoration: none;
+}
+
+.header .nav li:hover a.logo,
+.header .nav li:active a.logo{
+    cursor: pointer;
+    background: #008B8B;
+
 }
 .header .nav li a i {
     margin-left: 5px;
@@ -107,10 +114,10 @@
     margin-top: 30px; 
 }
 
-.header .nav .navbar-nav img {
-    margin-top: 10px;
-    height: 10px;
+.header .nav .navbar-nav li img {
+    margin-top: 5px;
+    height: 30px;
     padding-right: 2px;
     border-radius: 50%; 
-    width: 10px; 
+    width: 35px; 
 }
