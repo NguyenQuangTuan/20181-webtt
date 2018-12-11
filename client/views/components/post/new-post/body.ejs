@@ -1,21 +1,26 @@
 <div class="newpost">
-    <div class="fluid huge icon input">
-        <input autocomplete="off" autofocus="autofocus" id="title" name="" spellcheck="false" placeholder="Tựa đề hay gây ấn tượng cho người đọc"
-            type="text">
-    </div>
-    <div class=" fluid input">
-        <input autocomplete="off" id="" name="" placeholder="Tag hợp lí giúp bài viết dễ tìm thấy hơn" type="text">
-    </div>
-    <div class="write input">
-        <input>
-    </div>
-    <div class="anh">
-        <span> <i class="fa fa-question-circle" aria-hidden="true"></i></span>
-        <span>Kéo thả / copy và paste ảnh vào editor hoặc <a href="">chọn ảnh</a> để upload</span>
-    </div>
-    <div class="button">
-        <button id="dangbai">Đăng bài</button>
-        <button id="luunhap">Lưu nháp</button>
-
-    </div>
+  <div class="fluid huge icon input">
+    <input autocomplete="off" autofocus="autofocus" id="title" name="" spellcheck="false" placeholder="Tựa đề hay gây ấn tượng cho người đọc"
+      type="text">
+  </div>
+  <div class=" fluid input">
+    <input autocomplete="off" id="" name="" placeholder="Tag hợp lí giúp bài viết dễ tìm thấy hơn" type="text">
+  </div>
+  <textarea id="rte-tool" class="mb-2" data-temp=""></textarea>
+  <div class="button">
+    <button id="dangbai">Đăng bài</button>
+    <button id="luunhap">Lưu nháp</button>
+  </div>
 </div>
+
+<script>
+  $(function () {
+    $('#rte-tool').froalaEditor({ iframe: true })
+    $('#rte-tool').froalaEditor('html.set', $('#rte-tool').data('data-temp').replace(/\\"/gm, `"`))
+    $('#rte-tool').removeAttr('data-product-description-temp')
+    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+      event.preventDefault()
+      $(this).ekkoLightbox()
+    });
+  });
+</script>
