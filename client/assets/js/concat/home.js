@@ -1,1 +1,1 @@
-$('#myTab li:first-child a').tab('show');
+// $('#myTab li:first-child a').tab('show');
