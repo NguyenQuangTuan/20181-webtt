@@ -1,5 +1,6 @@
 importScripts('https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/4.13.0/firebase-messaging.js')
+importScripts('https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')
 
 /*
 Initialize the Firebase app 
@@ -17,9 +18,14 @@ messaging.setBackgroundMessageHandler(function (payload) {
     const notificationTitle = notification.title;
     const notificationOptions = {
         body: notification.body,
-        icon: notification.icon
+        icon: 'https://kipalog.com/assets/static_icon/ktmt-756fbdb880a66654c047992af8c742bd.jpg'
     };
+    $('#my-header').css('color', 'red');
 
     return self.registration.showNotification(notificationTitle,
         notificationOptions);
+});
+
+self.addEventListener('activate', event => {
+    console.log('V1 now ready to handle fetches!');
 });
