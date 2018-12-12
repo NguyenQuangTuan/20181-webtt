@@ -38,7 +38,7 @@ require('./routes/home-route')(app)
 require('./routes/post-route')(app)
 require('./routes/detail-route')(app)
 require('./routes/authen-route')(app, authen_controller)
-
+require('./routes/user-route')(app)
 // Locals
 require('./locals/locals')(app.locals)
 
