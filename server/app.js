@@ -21,20 +21,25 @@ app.use(express.static(path.join(__dirname, '../client/public')))
 // require('./middlewares/middleware')(app)
 
 // Services
-// const ProductService = require('./services/product-service')
+const PostService = require('./services/post-service')
 const AuthenService = require('./services/authen-service')
+const UserService = require('./services/user-service')
+const FavoriteService = require('./services/favorite-service')
 
-// const product_service = new ProductService()
+const post_service = new PostService()
 const authen_service = new AuthenService()
+const user_service = new UserService()
+const favorite_service = new FavoriteService()
+
 // Controllers
-// const HomeController = require('./controllers/home-controller')
+const HomeController = require('./controllers/home-controller')
 const AuthenController = require('./controllers/authen-controller')
 
-// const home_controller = new HomeController(product_service)
+const home_controller = new HomeController(post_service, user_service, favorite_service)
 const authen_controller = new AuthenController(authen_service)
 
 // Routes
-require('./routes/home-route')(app)
+require('./routes/home-route')(app, home_controller, authen_controller)
 require('./routes/post-route')(app)
 require('./routes/detail-route')(app)
 require('./routes/authen-route')(app, authen_controller)

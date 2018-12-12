@@ -3,11 +3,11 @@ const { api_url } = require('../config/index')
 
 module.exports = class ProductService {
   constructor() {
-    this.retrieve_all = this.retrieve_all.bind(this)
+    this.find_all = this.find_all.bind(this)
     this.create = this.create.bind(this)
   }
 
-  retrieve_all(post_id, offset = 0, limit = 10, callback) {
+  find_all(post_id, offset = 0, limit = 10, callback) {
 
     let url = `${api_url}/posts/${post_id}/reviews`
     let req = unirest.get(url)
