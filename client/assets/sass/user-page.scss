@@ -1,0 +1,29 @@
+.user-page{
+    width: 1200px;
+    margin: auto;
+}
+
+.meta-profile button{
+    border: 1px solid #00b5ad;
+    background: white;
+    color: #00b5ad;
+    border-radius: 20px;
+    width: 95px;
+    height: 30px;
+    margin-bottom: 3px;
+}
+
+.user-page .meta-profile img{
+    margin-top: 20px;
+}
+
+.user-page .follow {
+    margin-top: 20px;
+}
+
+.user-page .follow img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    margin: 5px;
+}

@@ -34,6 +34,7 @@ const home_controller = new HomeController(product_service)
 require('./routes/home-route')(app, home_controller)
 require('./routes/post-route')(app)
 require('./routes/detail-route')(app)
+require('./routes/user-route')(app)
 // Locals
 require('./locals/locals')(app.locals)
 
