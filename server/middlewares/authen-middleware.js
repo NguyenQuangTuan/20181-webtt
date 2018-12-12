@@ -1,22 +1,19 @@
-const jwt = require('jsonwebtoken')
 const config = require('../config/index')
 
 module.exports = {
-  get_authentication: (req, res, next) => {
-    let token = req.cookies.jetfri_admin_token || ''
-    jwt.verify(token, config.authen.secret, (err, decoded) => {
-      if (err) res.body = { admin: null }
-      else res.body = { admin: { ...decoded } }
-      next()
-    })
+  get_token: (req, res, next) => {
+    let token = req.cookies.wtt_token || ''
+    res.token = token
+    next()
   },
 
-  set_authentication: (req, res, next) => {
-    if (res.body.admin)
-      res.cookie('jetfri_admin_token',
-        jwt.sign(Object.assign({}, res.body.admin, { role: 'ADMIN' }), config.authen.secret, {
-          expiresIn: config.authen.token_expires_in
-        }), {
+  set_token: (req, res, next) => {
+    let token = res.token || ''
+    if (token)
+      res.cookie(
+        'wtt_token',
+        token,
+        {
           maxAge: config.authen.token_expires_in,
           httpOnly: true
         })
@@ -24,8 +21,8 @@ module.exports = {
     next()
   },
 
-  remove_authentication: (req, res, next) => {
-    res.clearCookie("jetfri_admin_token");
+  remove_token: (req, res, next) => {
+    res.clearCookie("wtt_token");
     next()
   }
 }
