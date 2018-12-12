@@ -35,13 +35,17 @@ const tag_service = new TagService()
 
 // Controllers
 const HomeController = require('./controllers/home-controller')
-const AuthenController = require('./controllers/tag-controller')
+const AuthenController = require('./controllers/authen-controller')
+const TagController = require('./controllers/tag-controller')
+const UserController = require('./controllers/user-controller')
 
-const home_controller = new HomeController(post_service, user_service, favorite_service, tag_service)
+const home_controller = new HomeController(post_service, user_service, favorite_service)
 const authen_controller = new AuthenController(authen_service)
+const tag_controller = new TagController(tag_service)
+const user_controller = new UserController(user_service)
 
 // Routes
-require('./routes/home-route')(app, home_controller, authen_controller)
+require('./routes/home-route')(app, home_controller, authen_controller, tag_controller, user_controller)
 require('./routes/post-route')(app)
 require('./routes/detail-route')(app)
 require('./routes/authen-route')(app, authen_controller)

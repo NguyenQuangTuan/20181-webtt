@@ -20,13 +20,10 @@ module.exports = class UserController {
   get_me(req, res, next) {
     let authorization = res.token
 
-    this.user_service.get_me(authorization, (err, tags) => {
-      if (err) {
-        res.tags = []
-        next()
-      }
+    this.user_service.get_me(authorization, (err, user) => {
+      if (err) next(err)
       else {
-        res.tags = tags
+        res.user = user
         next()
       }
     })

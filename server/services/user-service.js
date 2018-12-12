@@ -45,7 +45,7 @@ module.exports = class UserService {
   }
 
   get_me(authorization, callback) {
-    let url = `${api_url}/users/${user_id}`
+    let url = `${api_url}/me`
     let req = unirest.get(url)
       .headers({ authorization })
 
