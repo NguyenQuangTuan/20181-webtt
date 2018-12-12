@@ -6,6 +6,7 @@ module.exports = class UserService {
   constructor() {
     this.find_all = this.find_all.bind(this)
     this.find_one = this.find_one.bind(this)
+    this.get_me = this.get_me.bind(this)
   }
 
   find_all(condition = {}, select = null, offset = 0, limit = null, sort = {}, callback) {
@@ -37,6 +38,16 @@ module.exports = class UserService {
   find_one(user_id, callback) {
     let url = `${api_url}/users/${user_id}`
     let req = unirest.get(url)
+
+    req.end(res => {
+      return callback(res.error, res.body.user)
+    })
+  }
+
+  get_me(authorization, callback) {
+    let url = `${api_url}/users/${user_id}`
+    let req = unirest.get(url)
+      .headers({ authorization })
 
     req.end(res => {
       return callback(res.error, res.body.user)

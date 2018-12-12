@@ -11,6 +11,9 @@ module.exports = class PostService {
 
   find_all(condition = {}, select = null, offset = 0, limit = 10, sort = {}, callback) {
     let { post_ids, title, content, user_id, tags } = condition
+    if (post_ids) post_ids = post_ids.join(',')
+    if (tags) tags = tags.join(',')
+    
     let query = {}
     let list = Object.assign({}, { post_ids, title, content, user_id, tags })
     let list_key = Object.keys(list)

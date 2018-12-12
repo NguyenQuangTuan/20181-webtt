@@ -76,6 +76,7 @@ module.exports = class HomeController {
             })
           },
           (post_ids, cb2) => {
+            if (post_ids.length == 0) return cb2(null, [])
             this.post_service.find_all({ post_ids }, null, 0, 10, {}, (err, posts) => {
               if (err) return cb2(null, [])
               else return cb2(null, posts)
@@ -111,5 +112,4 @@ module.exports = class HomeController {
       }
     })
   }
-
 }
