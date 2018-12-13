@@ -1,3 +1,5 @@
+const authen_middleware = require('../middlewares/authen-middleware')
+
 const posts = [
   {
     "post_id": "yxK3wIP5w",
@@ -85,16 +87,55 @@ const posts = [
   },
 ]
 
-module.exports = (app, notification_controller) => {
-  app.get('/mypage/:user_id',
+module.exports = (app, authen_controller, user_controller, post_controller, notification_controller) => {
+  app.get('/mypage',
+    authen_middleware.get_token,
+    authen_controller.checkuser,
+    (req, res, next) => {
+      if (!res.token_valid) {
+        return res.redirect('/login')
+      }
+      else next()
+    },
+    user_controller.get_me,
+    user_controller.get_follows,
+    // Other handle
     notification_controller.find_by_page,
     notification_controller.get_unseen_number,
-
+    post_controller.find_by_user,
     (req, res, next) => {
-      let { notifications,noti_count } = res
+
+      let { notifications, noti_count, user, posts, follows } = res
+      let target_user = user
       res.render('user-page', {
         title: 'Mypage',
-        posts, notifications,noti_count
+        posts, user, notifications, noti_count, follows, target_user
+      })
+    }
+  )
+
+  app.get('/users/:user_id',
+    authen_middleware.get_token,
+    authen_controller.checkuser,
+    (req, res, next) => {
+      if (!res.token_valid) {
+        return res.redirect('/login')
+      }
+      else next()
+    },
+    user_controller.get_me,
+    user_controller.find_one,
+    user_controller.get_follows,
+    // Other handle
+    notification_controller.find_by_page,
+    notification_controller.get_unseen_number,
+    post_controller.find_by_user,
+    (req, res, next) => {
+      let { notifications, noti_count, user, posts, follows, target_user } = res
+      console.log(target_user)
+      res.render('user-page', {
+        title: 'Mypage',
+        posts, user, notifications, noti_count, follows, target_user
       })
     }
   )

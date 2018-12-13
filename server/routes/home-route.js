@@ -18,6 +18,8 @@ module.exports = (app, home_controller,
     },
     notification_controller.save_refresh_token,
     user_controller.get_me,
+    user_controller.get_follows,
+
     // Other handle
     notification_controller.find_by_page,
     notification_controller.get_unseen_number,
@@ -27,10 +29,11 @@ module.exports = (app, home_controller,
       let { notifications, noti_count } = res
       let { bv_hay, bv_moi, bv_yt } = res
       let { tags } = res
-      let { user } = res
+      let { user, follows } = res
+      console.log(user)
       res.render('home', {
         title: 'Share.com',
-        bv_hay, bv_moi, bv_yt, tags, user, notifications,noti_count
+        bv_hay, bv_moi, bv_yt, tags, user, notifications,noti_count,follows
       })
     }
   )
