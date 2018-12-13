@@ -1,10 +1,11 @@
 const authen_middleware = require('../middlewares/authen-middleware')
 
 module.exports = (app, authen_controller,
-   user_controller, 
-   post_detail_controller, 
-   review_controller,
-   notification_controller) => {
+  user_controller,
+  post_detail_controller,
+  review_controller,
+  tag_controller,
+  notification_controller) => {
   app.get('/posts/new',
     authen_middleware.get_token,
     authen_controller.checkuser,
@@ -16,17 +17,19 @@ module.exports = (app, authen_controller,
     },
     user_controller.get_me,
     // Other handle
+    tag_controller.find_all,
     notification_controller.find_by_page,
     (req, res, next) => {
-      let { notifications,noti_count } = res
-
+      let { user } = res
+      let { tags } = res
+      let { notifications, noti_count } = res
       res.render('post/new-post', {
         title: 'New Post',
-        notifications
+        user, tags, notifications, noti_count
       })
     }
   )
-  
+
   app.get('/posts/:post_id',
     authen_middleware.get_token,
     authen_controller.checkuser,
@@ -43,15 +46,15 @@ module.exports = (app, authen_controller,
     post_detail_controller.get_post,
     review_controller.get_review,
     (req, res, next) => {
-      let { notifications,noti_count } = res
+      let { notifications, noti_count } = res
       let { user } = res
       let { post } = res
       res.render('post/detail-post', {
         title: 'Share.com',
-        user, post, notifications,noti_count
+        user, post, notifications, noti_count
       })
     }
   )
 
-  
+
 }

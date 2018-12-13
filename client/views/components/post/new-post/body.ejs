@@ -4,7 +4,24 @@
       type="text">
   </div>
   <div class=" fluid input">
-    <input autocomplete="off" id="" style="margin-bottom: 20px" name="" placeholder="Tag hợp lí giúp bài viết dễ tìm thấy hơn" type="text">
+    <!-- <input autocomplete="off" id="" style="margin-bottom: 20px" name="" placeholder="Tag hợp lí giúp bài viết dễ tìm thấy hơn" type="text"> -->
+    <div>
+      <div class="dropdown" style="margin-top: 10px; display: inline;">
+        <div class="btn dropdown-toggle" data-toggle="dropdown" style="width: 100px;">
+          Choose tags
+          <b class="caret"></b>
+        </div>
+        <ul class="dropdown-menu">
+          <% tags.forEach(tag => { %>
+            <li value="<%= tag %>">
+              <a><%= tag %></a>
+            </li>
+          <% } )%>
+        </ul>
+      </div>
+      <input id="cb-tagsinput" class="form-control" multiple data-role="tagsinput" style="width: 80%; height: 30px;">
+    </div>
+
   </div>
 
   <textarea id="rte-tool" class="mb-2"></textarea>
