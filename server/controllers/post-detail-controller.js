@@ -17,7 +17,7 @@ module.exports = class PostDetail {
         })
       },
       (post, cb) => {
-
+        
       }
     ])
 
