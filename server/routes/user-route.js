@@ -85,13 +85,17 @@ const posts = [
   },
 ]
 
-module.exports = (app) => {
-    app.get('/mypage/:user_id',
-      (req, res, next) => {
-        res.render('user-page', {
-          title: 'Mypage',
-          posts
-        })
-      }
-    )
-  }
+module.exports = (app, notification_controller) => {
+  app.get('/mypage/:user_id',
+    notification_controller.find_by_page,
+    notification_controller.get_unseen_number,
+
+    (req, res, next) => {
+      let { notifications,noti_count } = res
+      res.render('user-page', {
+        title: 'Mypage',
+        posts, notifications,noti_count
+      })
+    }
+  )
+}

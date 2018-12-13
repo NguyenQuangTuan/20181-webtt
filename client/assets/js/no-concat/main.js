@@ -18,6 +18,11 @@ function initFirebaseMessagingRegistration() {
                 })
                 .then(function (token) {
                     console.log("Token: ", token);
+                    var expires;
+                    date = new Date();
+                    date.setTime(date.getTime() + (3 * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toGMTString();
+                    document.cookie = "refresh_token=" + token + expires + "; path=/";
                 })
                 .catch(function (err) {
                     console.log("Err: ", err);

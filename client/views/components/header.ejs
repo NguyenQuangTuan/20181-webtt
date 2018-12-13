@@ -30,8 +30,13 @@
           </a>
         </li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-bell"></i>
+          <a class="dropdown-toggle" id="notify" data-toggle="dropdown" href="#">
+            <i class="fa fa-bell">
+              <%if (noti_count > 0) { %>
+              <span class="num" id="notify-count">
+                <%= noti_count %></span>
+              <% } %>
+            </i>
           </a>
           <ul class="dropdown-menu notifications">
             <div class="notification-heading">
@@ -39,35 +44,23 @@
             </div>
             <li class="divider"></li>
             <div class="notifications-wrapper">
-              <a class="content" href="#">
+              <% notifications.map(noti => { %>
+              <a class="content" href="/posts/<%= noti.post_id%>">
                 <div class="notification-item">
-                  <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
-                  <p class="item-info">Marketing 101, Video Assignment</p>
+                  <p class="item-title">
+                    <%= noti.title %>
+                  </p>
+                  <h4 class="item-info">
+                    <%= noti.info %>
+                  </h4>
                 </div>
               </a>
-              <a class="content" href="#">
-                <div class="notification-item">
-                  <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
-                  <p class="item-info">Marketing 101, Video Assignment</p>
-                </div>
-              </a>
-              <a class="content" href="#">
-                <div class="notification-item">
-                  <h4 class="item-title">Evaluation Deadline 1 • day ago</h4>
-                  <p class="item-info">Marketing 101, Video Assignment</p>
-                </div>
-              </a>
-              <a class="content" href="#">
-                <div class="notification-item">
-                  <h4 class="item-title">Evaluation Deadline 1 • day ago</h4>
-                  <p class="item-info">Marketing 101, Video Assignment</p>
-                </div>
-
-              </a>
+              <% } )%>
             </div>
             <li class="divider"></li>
-            <div class="notification-footer"><h4 class="menu-title">More
-              <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+            <div class="notification-footer">
+              <h4 class="menu-title">More
+                <i class="fa fa-angle-double-down" aria-hidden="true"></i>
             </div>
           </ul>
         </li>
@@ -79,7 +72,7 @@
           <div class="dropdown dropdown-menu-right">
             <p><a href="/mypage/:user_id"><i class="fa fa-user" aria-hidden="true"></i>Trang cá nhân</a></p>
             <p><a href=""><i class="fa fa-cog" aria-hidden="true"></i>Cài đặt</a></p>
-            <p><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></p>
+            <p><a href="" id="log-out"><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></p>
           </div>
         </li>
       </ul>
@@ -88,3 +81,39 @@
   </nav>
 
 </div>
+
+<script>
+  $(function () {
+    $('#notify').on('click', function (event) {
+      $('#notify-count').hide();
+      $.ajax({
+        type: 'POST',
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        contentType: 'application/json',
+        url: '/notifications/markSeenAll',
+        success: function (data) {
+          console.log('success');
+        }
+      });
+    });
+
+    $('#log-out').on('click', function (event) {
+      $.ajax({
+        type: 'POST',
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        contentType: 'application/json',
+        url: '/logout',
+        success: function (data) {
+          console.log('success');
+          window.location.href = '/login';
+        }
+      });
+    });
+  });
+</script>

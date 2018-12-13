@@ -147,9 +147,19 @@
    margin:5px 0;          
    }
 
+  span.num {
+    background: red;
+    position: absolute;
+    font-size: 1.1em;
+    top: 1px;
+    color: #fff;
+    right: 5px;
+    margin-top: 0px !important; 
+  }
+
  .item-title {
-   
-  font-size:1.3rem;
+   font-size:14px;
+   font-weight: 700;
   color:#000;
      
  }
@@ -157,6 +167,7 @@
  .notifications a.content {
   text-decoration:none;
   background:#EEEEEE;
+  font-size:1.1rem;
 
   }
      
