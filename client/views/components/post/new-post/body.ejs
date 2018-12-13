@@ -6,20 +6,20 @@
   <div class=" fluid input">
     <!-- <input autocomplete="off" id="" style="margin-bottom: 20px" name="" placeholder="Tag hợp lí giúp bài viết dễ tìm thấy hơn" type="text"> -->
     <div>
-      <div class="dropdown" style="margin-top: 10px;">
+      <div class="dropdown" style="margin-top: 10px; display: inline;">
         <div class="btn dropdown-toggle" data-toggle="dropdown" style="width: 100px;">
           Choose tags
           <b class="caret"></b>
         </div>
         <ul class="dropdown-menu">
-          <% tags.map(tag => { %>
+          <% tags.forEach(tag => { %>
             <li value="<%= tag %>">
               <a><%= tag %></a>
             </li>
           <% } )%>
         </ul>
       </div>
-      <select id="cb-tagsinput" multiple data-role="tagsinput"></select>
+      <input id="cb-tagsinput" class="form-control" multiple data-role="tagsinput" style="width: 80%; height: 30px;">
     </div>
 
   </div>

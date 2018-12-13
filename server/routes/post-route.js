@@ -18,6 +18,7 @@ module.exports = (app, authen_controller, user_controller, post_detail_controlle
       let { tags } = res
       res.render('post/new-post', {
         title: 'New Post',
+        user, tags
       })
     }
   )
