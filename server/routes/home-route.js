@@ -11,9 +11,10 @@ module.exports = (app, home_controller, authen_controller, tag_controller, user_
       }
       else next()
     },
+    user_controller.get_me,
+    // Other handle
     home_controller.get_list_posts,
     tag_controller.find_all,
-    user_controller.get_me,
     (req, res, next) => {
       let { bv_hay, bv_moi, bv_yt } = res
       let { tags } = res

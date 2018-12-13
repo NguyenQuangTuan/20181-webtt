@@ -35,11 +35,16 @@ const tag_service = new TagService()
 
 // Controllers
 const HomeController = require('./controllers/home-controller')
+const PostDetailController = require('./controllers/post-detail-controller')
+
+const home_controller = new HomeController(post_service, user_service, favorite_service)
+const post_detail_controller = new PostDetailController(post_service)
+
+// no page
 const AuthenController = require('./controllers/authen-controller')
 const TagController = require('./controllers/tag-controller')
 const UserController = require('./controllers/user-controller')
 
-const home_controller = new HomeController(post_service, user_service, favorite_service)
 const authen_controller = new AuthenController(authen_service)
 const tag_controller = new TagController(tag_service)
 const user_controller = new UserController(user_service)
@@ -47,7 +52,7 @@ const user_controller = new UserController(user_service)
 // Routes
 require('./routes/home-route')(app, home_controller, authen_controller, tag_controller, user_controller)
 require('./routes/post-route')(app)
-require('./routes/detail-route')(app)
+require('./routes/post-detail-route')(app, authen_controller, user_controller, post_detail_controller)
 require('./routes/authen-route')(app, authen_controller)
 require('./routes/user-route')(app)
 // Locals

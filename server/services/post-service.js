@@ -5,7 +5,7 @@ const api_url = 'http://localhost:8080'
 module.exports = class PostService {
   constructor() {
     this.find_all = this.find_all.bind(this)
-    this.retrieve_one = this.retrieve_one.bind(this)
+    this.find_one = this.find_one.bind(this)
     this.create = this.create.bind(this)
   }
 
@@ -38,7 +38,7 @@ module.exports = class PostService {
     })
   }
 
-  retrieve_one(post_id, callback) {
+  find_one(post_id, callback) {
     let url = `${api_url}/posts/${post_id}`
     let req = unirest.get(url)
 
