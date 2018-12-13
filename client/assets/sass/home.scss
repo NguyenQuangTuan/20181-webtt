@@ -17,14 +17,14 @@
 }
 
 .single-post .new-view{
-    border-bottom: 1px solid #CCCCCC; 
-    margin-top: 20px;
+    border-top: 1px solid #CCCCCC; 
 }
 
 .single-post .new-view label {
-    margin-right: 530px;
+    margin-right: 500px;
     color: #00b5ad;
-    font-size: 20px;
+    font-size: 18px;
+    margin-top: 20px;
 }
 
 .new-view a:hover label{
@@ -32,9 +32,17 @@
     color: #337ab7;
 }
 
-// .single-post .new-view span {
-//     margin: 5px;
-// }
+.new-view .img{
+    margin-top:17px; 
+}
+
+.single-post .button button{
+    margin-top: 20px;
+     width: 100%;
+     padding: 10px;
+     background: #EEEEEE;
+     border-radius: 0px;
+}
 
 .single-post .new-view span i {
     color: #CCCCCC;

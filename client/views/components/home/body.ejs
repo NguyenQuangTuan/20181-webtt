@@ -24,18 +24,25 @@
           <div class="single-post">
             <% posts.map(post => { %>
             <div class="new-view">
-              <a href="/posts/detail"><label>
-                <%= post.title %></label></a>
-              <span>110 <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-              <p>
-                <%= post.short_content%>
-              </p>
-              <p>
-                <%= locals.settingTab%>
-              </p>
+              <div class="row">
+                <div class="col-sm-1"><img class="img" src="/img/test.jpg" alt="ảnh"></div>
+                <div class="col-sm-11">
+                  <a href="/posts/detail"><label>
+                      <%= post.title %></label></a>
+                  <span>110 <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                  <p>
+                    <%= post.short_content%>
+                  </p>
+                  <p>
+                    <%= locals.settingTab%>
+                  </p>
+                </div>
+              </div>
             </div>
             <% } )%>
-
+            <div class="button">
+              <button><a>Xem tiếp</a></button>
+            </div>
           </div>
         </div>
         <!-- New Post -->

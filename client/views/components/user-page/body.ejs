@@ -1,5 +1,12 @@
 <div class="user-page">
     <div class="col-sm-8">
+        <div class="suggest-title" style="margin-bottom: 10px;">
+            <i class="fa fa-tags" aria-hidden="true">&nbsp&nbsp<i style="color: #333;">Chủ đề nổi bật</i></i>
+            <ul>
+                <li><a>huyenharu</a></li>
+                <li><a>haruharu</a></li>
+            </ul>
+        </div>
         <div class="single-post">
             <% posts.map(post => { %>
             <div class="new-view">
@@ -14,7 +21,9 @@
                 </p>
             </div>
             <% } )%>
-
+            <div class="button">
+                <button><a>Xem tiếp</a></button>
+            </div>
         </div>
     </div>
     <div class="col-sm-1"></div>
@@ -30,7 +39,7 @@
                     <span>0 bài viết</span><br>
                     <span>0 người theo dõi</span>
                 </div>
-            </div>           
+            </div>
         </div>
         <div class="follow">
             <img src="/img/test.jpg" alt="ảnh">
