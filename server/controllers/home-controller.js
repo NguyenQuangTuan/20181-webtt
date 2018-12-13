@@ -10,11 +10,12 @@ module.exports = class HomeController {
   }
 
   get_list_posts(req, res, next) {
+    let offset = req.options.offset || req.options.skip || 0
     async.parallel({
       bv_hay: cb => {
         async.waterfall([
           cb2 => {
-            this.post_service.find_all({}, null, 0, 10, { total_like: -1 }, (err, posts) => {
+            this.post_service.find_all({}, null, offset, 10, { total_like: -1 }, (err, posts) => {
               if (err) return cb2(null, [])
               else return cb2(null, posts)
             })
@@ -42,7 +43,7 @@ module.exports = class HomeController {
       bv_moi: cb => {
         async.waterfall([
           cb2 => {
-            this.post_service.find_all({}, null, 0, 10, { created_at: -1 }, (err, posts) => {
+            this.post_service.find_all({}, null, offset, 10, { created_at: -1 }, (err, posts) => {
               if (err) return cb2(null, [])
               else return cb2(null, posts)
             })
@@ -77,7 +78,7 @@ module.exports = class HomeController {
           },
           (post_ids, cb2) => {
             if (post_ids.length == 0) return cb2(null, [])
-            this.post_service.find_all({ post_ids }, null, 0, 10, {}, (err, posts) => {
+            this.post_service.find_all({ post_ids }, null, offset, 10, {}, (err, posts) => {
               if (err) return cb2(null, [])
               else return cb2(null, posts)
             })
