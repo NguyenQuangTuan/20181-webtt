@@ -63,6 +63,7 @@ require('./routes/home-route')(app, home_controller, authen_controller, tag_cont
 require('./routes/post-route')(app, authen_controller, user_controller, post_detail_controller, review_controller)
 require('./routes/authen-route')(app, authen_controller)
 require('./routes/user-route')(app)
+require('./routes/search-route')(app)
 // Locals
 require('./locals/locals')(app.locals)
 
