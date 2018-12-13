@@ -7,7 +7,7 @@
     <input autocomplete="off" id="" style="margin-bottom: 20px" name="" placeholder="Tag hợp lí giúp bài viết dễ tìm thấy hơn" type="text">
   </div>
 
-  <textarea id="rte-tool" class="mb-2" data-temp=""></textarea>
+  <textarea id="rte-tool" class="mb-2"></textarea>
 
   <div class="button">
     <button id="dangbai">Đăng bài</button>
@@ -18,7 +18,7 @@
 <script>
   $(function () {
     $('#rte-tool').froalaEditor({ iframe: true })
-    $('#rte-tool').froalaEditor('html.set', $('#rte-tool').data('data-temp').replace(/\\"/gm, `"`))
+    $('#rte-tool').froalaEditor('html.set', '')
     $('#rte-tool').removeAttr('data-product-description-temp')
     $(document).on('click', '[data-toggle="lightbox"]', function (event) {
       event.preventDefault()

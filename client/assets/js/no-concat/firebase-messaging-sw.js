@@ -1,6 +1,5 @@
 importScripts('https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/4.13.0/firebase-messaging.js')
-importScripts('https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')
 
 /*
 Initialize the Firebase app 
