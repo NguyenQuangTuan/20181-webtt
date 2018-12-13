@@ -32,6 +32,7 @@ const UserService = require('./services/user-service')
 const FavoriteService = require('./services/favorite-service')
 const TagService = require('./services/tag-service')
 const ReviewService = require('./services/review-service')
+const NotificationService = require('./services/notification-service')
 
 const post_service = new PostService()
 const authen_service = new AuthenService()
@@ -39,12 +40,15 @@ const user_service = new UserService()
 const favorite_service = new FavoriteService()
 const tag_service = new TagService()
 const review_service = new ReviewService()
+const notification_service = new NotificationService()
 
 // Controllers
 const HomeController = require('./controllers/home-controller')
 const PostDetailController = require('./controllers/post-detail-controller')
+const NotificationController = require('./controllers/notification-controller')
 
 const home_controller = new HomeController(post_service, user_service, favorite_service)
+const notification_controller = new NotificationController(notification_service)
 const post_detail_controller = new PostDetailController(post_service, user_service)
 
 // no page
@@ -59,11 +63,12 @@ const user_controller = new UserController(user_service)
 const review_controller = new ReviewController(review_service, user_service)
 
 // Routes
-require('./routes/home-route')(app, home_controller, authen_controller, tag_controller, user_controller)
-require('./routes/post-route')(app, authen_controller, user_controller, post_detail_controller, review_controller)
-require('./routes/authen-route')(app, authen_controller)
-require('./routes/user-route')(app)
-require('./routes/search-route')(app)
+require('./routes/home-route')(app, home_controller, authen_controller, tag_controller, user_controller, notification_controller)
+require('./routes/post-route')(app, authen_controller, user_controller, post_detail_controller, review_controller, notification_controller)
+require('./routes/authen-route')(app, authen_controller, notification_controller)
+require('./routes/user-route')(app, notification_controller)
+require('./routes/notification-route')(app, notification_controller)
+require('./routes/search-route')(app, notification_controller)
 // Locals
 require('./locals/locals')(app.locals)
 
