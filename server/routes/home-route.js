@@ -16,6 +16,7 @@ module.exports = (app, home_controller,
       }
       else next()
     },
+    notification_controller.save_refresh_token,
     user_controller.get_me,
     // Other handle
     notification_controller.find_by_page,

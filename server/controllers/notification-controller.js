@@ -14,7 +14,7 @@ module.exports = class NotificationController {
         console.log('Cookies: ', req.cookies)
         let { refresh_token, wtt_token } = req.cookies
         if (wtt_token) {
-            this.notification_service.save_refresh_token(authorization, refresh_token, (err, success) => {
+            this.notification_service.save_refresh_token(wtt_token, refresh_token, (err, success) => {
                 if (err) next(err)
                 else {
                     res.success = success
