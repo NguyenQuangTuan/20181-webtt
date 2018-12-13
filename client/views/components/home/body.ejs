@@ -24,15 +24,24 @@
           <div class="single-post">
             <% bv_hay.map(post => { %>
             <div class="new-view">
-              <a href="/posts/<%= post.post_id%>"><label>
-                  <%= post.title %></label></a>
-              <span><%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-              <p>
-                <%= post.short_content%>
-              </p>
-              <p>
-                <%= locals.settingTab%>
-              </p>
+              <div class="row">
+                <div class="col-sm-1">
+                  <img class="img" src="/img/test.jpg" alt="ảnh">
+                </div>
+                <div class="col-sm-11">
+                  <a href="/posts/<%= post.post_id%>"><label>
+                      <%= post.title %></label></a>
+                  <span>
+                    <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                  <p>
+                    <%= post.short_content%>
+                  </p>
+                  <p>
+                    <%= locals.settingTab%>
+                  </p>
+                </div>
+              </div>
+
             </div>
             <% } )%>
             <div class="button">
@@ -45,15 +54,24 @@
           <div class="single-post">
             <% bv_moi.map(post => { %>
             <div class="new-view">
-              <a href="/posts/<%= post.post_id%>"><label>
-                  <%= post.title %></label></a>
-              <span><%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-              <p>
-                <%= post.short_content%>
-              </p>
-              <p>
-                <%= locals.settingTab%>
-              </p>
+              <div class="row">
+                <div class="col-sm-1">
+                  <img class="img" src="/img/test.jpg" alt="ảnh">
+                </div>
+                <div class="col-sm-11">
+                  <a href="/posts/<%= post.post_id%>"><label>
+                      <%= post.title %></label></a>
+                  <span>
+                    <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                  <p>
+                    <%= post.short_content%>
+                  </p>
+                  <p>
+                    <%= locals.settingTab%>
+                  </p>
+                </div>
+              </div>
+
             </div>
             <% } )%>
           </div>
@@ -64,15 +82,24 @@
           <div class="single-post">
             <% bv_yt.map(post => { %>
             <div class="new-view">
-              <a href="/posts/<%= post.post_id%>"><label>
-                  <%= post.title %></label></a>
-              <span><%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-              <p>
-                <%= post.short_content%>
-              </p>
-              <p>
-                <%= locals.settingTab%>
-              </p>
+              <div class="row">
+                <div class="col-sm-1">
+                  <img class="img" src="/img/test.jpg" alt="ảnh">
+                </div>
+                <div class="col-sm-11">
+                  <a href="/posts/<%= post.post_id%>"><label>
+                      <%= post.title %></label></a>
+                  <span>
+                    <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                  <p>
+                    <%= post.short_content%>
+                  </p>
+                  <p>
+                    <%= locals.settingTab%>
+                  </p>
+                </div>
+              </div>
+
             </div>
             <% } )%>
           </div>
@@ -90,7 +117,8 @@
               <img src="<%= user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
             </div>
             <div class="col-sm-7">
-              <p><label><%= user.full_name%></label></p>
+              <p><label>
+                  <%= user.full_name%></label></p>
               <span>0 bài viết</span><br>
               <span>0 người theo dõi</span>
             </div>
@@ -100,7 +128,8 @@
           <i class="fa fa-tags" aria-hidden="true">&nbsp&nbsp<i style="color: #333;">Chủ đề nổi bật</i></i>
           <ul>
             <% tags.map(tag => { %>
-              <li><a><%= tag %></a></li>
+            <li><a>
+                <%= tag %></a></li>
             <% } )%>
           </ul>
         </div>

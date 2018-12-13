@@ -1,0 +1,29 @@
+<div class="tab-pane" id="newView" role="tabpanel" aria-labelledby="manyView-tab">
+    <div class="single-post" style="width: 1000px; margin: auto">
+        <% posts.map(post => { %>
+        <div class="new-view">
+            <div class="row">
+                <div class="col-sm-1">
+                    <img class="img" src="/img/test.jpg" alt="ảnh">
+                </div>
+                <div class="col-sm-11">
+                    <a href="/posts/<%= post.post_id%>"><label style="margin-right: 680px;">
+                            <%= post.title %></label></a>
+                    <span>
+                        <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                    <p>
+                        <%= post.short_content%>
+                    </p>
+                    <p>
+                        <%= locals.settingTab%>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <% } )%>
+        <div class="button">
+            <button><a>Xem tiếp</a></button>
+        </div>
+    </div>
+</div>
