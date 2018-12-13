@@ -34,7 +34,12 @@ function initFirebaseMessagingRegistration() {
 }
 messaging.onMessage(function (payload) {
     console.log("Message received. ", payload);
-    $('#my-header').css('color', 'red');
+    let now = $('#notify-count').text();
+    let nowNumber = Number(now) || 0;
+    nowNumber++;
+    $("#notify-count").text(nowNumber);
+
+    $('#notify-count').show();
 });
 messaging.onTokenRefresh(function () {
     messaging.getToken()
