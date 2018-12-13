@@ -1,6 +1,5 @@
 const unirest = require('unirest')
-// const { api_url } = require('../config/index')
-const api_url = 'http://localhost:8080'
+const { api_url } = require('../config/index')
 
 module.exports = class PostService {
   constructor() {
