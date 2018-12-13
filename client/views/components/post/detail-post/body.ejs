@@ -1,4 +1,4 @@
-<div class="content detail">
+<div class="content detail" data-user="<%= JSON.stringify(user) %>">
   <div class="row">
     <div class="col-sm-9">
       <div class="detailView">
@@ -9,10 +9,7 @@
         <p>
           <%- post.content%>
         </p>
-        <p>
-          <%= locals.settingTab%>
-        </p>
-      </div>
+      </div class="mt-2">
       <h4>Bình luận</h4>
       <div class=" row comment">
         <div class="col-sm-1">
@@ -50,14 +47,7 @@
     </div>
     <div class="col-sm-3">
       <div class="row likecmt">
-        <div class="number-like">
-          <div class="col-sm-6">
-            <a><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
-            <span>110</span>
-          </div>
-        </div>
-
-        <div class="profile">
+        <div class="profile ">
           <div class="col-sm-4">
             <img src="/img/test.jpg" alt="ảnh">
           </div>
@@ -65,6 +55,13 @@
             <label>Huyen Haru</label><br>
             <span>0 bài viết</span><br>
             <span>0 người theo dõi</span>
+          </div>
+        </div>
+
+        <div class="number-like">
+          <div class="col-sm-6">
+            <a><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+            <span>110</span>
           </div>
         </div>
       </div>

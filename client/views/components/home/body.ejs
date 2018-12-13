@@ -22,11 +22,11 @@
         <!-- New View -->
         <div class="tab-pane" id="newView" role="tabpanel" aria-labelledby="manyView-tab">
           <div class="single-post">
-            <% posts.map(post => { %>
+            <% bv_hay.map(post => { %>
             <div class="new-view">
-              <a href="/posts/detail"><label>
-                <%= post.title %></label></a>
-              <span>110 <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+              <a href="/posts/<%= post.post_id%>"><label>
+                  <%= post.title %></label></a>
+              <span><%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
               <p>
                 <%= post.short_content%>
               </p>
@@ -41,12 +41,38 @@
         <!-- New Post -->
         <div class="tab-pane active" id="newPost" role="tabpanel" aria-labelledby="newExam-tab">
           <div class="single-post">
+            <% bv_moi.map(post => { %>
+            <div class="new-view">
+              <a href="/posts/<%= post.post_id%>"><label>
+                  <%= post.title %></label></a>
+              <span><%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+              <p>
+                <%= post.short_content%>
+              </p>
+              <p>
+                <%= locals.settingTab%>
+              </p>
+            </div>
+            <% } )%>
           </div>
         </div>
         <!-- End new post -->
         <!-- Love Post -->
         <div class="tab-pane" id="newLove" role="tabpanel" aria-labelledby="newExam-tab">
           <div class="single-post">
+            <% bv_yt.map(post => { %>
+            <div class="new-view">
+              <a href="/posts/<%= post.post_id%>"><label>
+                  <%= post.title %></label></a>
+              <span><%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+              <p>
+                <%= post.short_content%>
+              </p>
+              <p>
+                <%= locals.settingTab%>
+              </p>
+            </div>
+            <% } )%>
           </div>
         </div>
         <!-- End love post -->
@@ -59,10 +85,10 @@
         <div class="meta-profile">
           <div class="row">
             <div class="col-sm-5">
-              <img src="/img/test.jpg" alt="ảnh">
+              <img src="<%= user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
             </div>
             <div class="col-sm-7">
-              <p><label>Huyen Haru</label></p>
+              <p><label><%= user.full_name%></label></p>
               <span>0 bài viết</span><br>
               <span>0 người theo dõi</span>
             </div>
@@ -71,8 +97,9 @@
         <div class="suggest-title">
           <i class="fa fa-tags" aria-hidden="true">&nbsp&nbsp<i style="color: #333;">Chủ đề nổi bật</i></i>
           <ul>
-            <li><a>huyenharu</a></li>
-            <li><a>haruharu</a></li>
+            <% tags.map(tag => { %>
+              <li><a><%= tag %></a></li>
+            <% } )%>
           </ul>
         </div>
       </div>

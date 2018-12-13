@@ -21,22 +21,38 @@ app.use(express.static(path.join(__dirname, '../client/public')))
 // require('./middlewares/middleware')(app)
 
 // Services
-// const ProductService = require('./services/product-service')
+const PostService = require('./services/post-service')
 const AuthenService = require('./services/authen-service')
+const UserService = require('./services/user-service')
+const FavoriteService = require('./services/favorite-service')
+const TagService = require('./services/tag-service')
 
-// const product_service = new ProductService()
+const post_service = new PostService()
 const authen_service = new AuthenService()
-// Controllers
-// const HomeController = require('./controllers/home-controller')
-const AuthenController = require('./controllers/authen-controller')
+const user_service = new UserService()
+const favorite_service = new FavoriteService()
+const tag_service = new TagService()
 
-// const home_controller = new HomeController(product_service)
+// Controllers
+const HomeController = require('./controllers/home-controller')
+const PostDetailController = require('./controllers/post-detail-controller')
+
+const home_controller = new HomeController(post_service, user_service, favorite_service)
+const post_detail_controller = new PostDetailController(post_service)
+
+// no page
+const AuthenController = require('./controllers/authen-controller')
+const TagController = require('./controllers/tag-controller')
+const UserController = require('./controllers/user-controller')
+
 const authen_controller = new AuthenController(authen_service)
+const tag_controller = new TagController(tag_service)
+const user_controller = new UserController(user_service)
 
 // Routes
-require('./routes/home-route')(app)
+require('./routes/home-route')(app, home_controller, authen_controller, tag_controller, user_controller)
 require('./routes/post-route')(app)
-require('./routes/detail-route')(app)
+require('./routes/post-detail-route')(app, authen_controller, user_controller, post_detail_controller)
 require('./routes/authen-route')(app, authen_controller)
 require('./routes/user-route')(app)
 // Locals
