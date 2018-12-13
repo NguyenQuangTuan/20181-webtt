@@ -25,8 +25,8 @@ module.exports = (app, authen_controller) => {
         return res.redirect('/home')
       }
       else {
-        return res.render('login', {
-          title: 'Login | Web Tiên Tiến'
+        return res.render('signup', {
+          title: 'Signup | Web Tiên Tiến'
         })
       }
     }
