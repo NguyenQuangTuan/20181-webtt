@@ -60,7 +60,7 @@ const review_controller = new ReviewController(review_service, user_service)
 
 // Routes
 require('./routes/home-route')(app, home_controller, authen_controller, tag_controller, user_controller)
-require('./routes/post-route')(app, authen_controller, user_controller, post_detail_controller, review_controller)
+require('./routes/post-route')(app, authen_controller, user_controller, post_detail_controller, review_controller, tag_controller)
 require('./routes/authen-route')(app, authen_controller)
 require('./routes/user-route')(app)
 // Locals
