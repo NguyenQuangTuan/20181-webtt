@@ -1,10 +1,12 @@
 FROM node:9.11.1-alpine
-RUN mkdir -p /usr/src/ptpmcn-sales-page
-WORKDIR /usr/src/ptpmcn-sales-page
-COPY package.json /usr/src/ptpmcn-sales-page
-RUN npm install gulp -g
+RUN mkdir -p /usr/src/wtt-frontend
+WORKDIR /usr/src/wtt-frontend
+COPY package.json /usr/src/wtt-frontend
+RUN npm config set unsafe-perm true
 RUN npm install
-COPY . /usr/src/ptpmcn-sales-page
+RUN npm install gulp -g
+RUN npm install pm2 -g
+COPY . /usr/src/wtt-frontend
 RUN gulp
 EXPOSE  8080
-CMD [ "node", "bin/www" ]
+CMD [ "pm2-runtime", "./launcher/server.yml" ]

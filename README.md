@@ -1,34 +1,24 @@
-# RUN APP 
-## - Install gulp global if not exist
-```
-sudo npm install gulp -g
-```
-## - Open project and run in terminal 
-```
-gulp
-```
-## - Run app
+# WTT 
 
-# DOCKER
 ## Build 
 ```
- sudo docker build -t ptpmcn-sales-page:{ version } .
+ sudo docker build -t wtt-frontend:{ version } .
 ```
  ## Run 
 ```
- sudo docker run --rm -p { port }:8080 --env NODE_ENV={ env } ptpmcn-sales-page:{version}
+ sudo docker run --rm -p {port}:8080 --env NODE_ENV={ env } tuannq/wtt:wtt-frontend-{version} (dev: 8084, main: 8184)
  ```
  ## Create tag
  ```
- sudo docker tag ptpmcn-sales-page:{ version } tuannq(repo)/ptpmcn(group)/ptpmcn-sales-page:{ version }
+ sudo docker tag wtt-frontend:{ version } tuannq(repo)/wtt(group):wtt-frontend-{ version }
  ```
  ## Push tag
  ```
- sudo docker push tuannq(repo)/ptpmcn(group)/ptpmcn-sales-page:{ version }
+ sudo docker push tuannq(repo)/wtt(group):wtt-frontend-{ version }
  ```
  ## Pull tag
  ```
- sudo docker pull tuannq(repo)/ptpmcn(group)/ptpmcn-sales-page:{ version }
+ sudo docker pull tuannq(repo)/wtt(group):wtt-frontend-{ version }
  ```
  ## View image 
  ```
@@ -46,3 +36,10 @@ gulp
  ```
   sudo docker rmi {image_id}
  ```
+  ## View process
+ ```
+  sudo docker ps
+ ```
+ ## Attach process
+ ```
+  sudo docker logs -f {id-process}
