@@ -1,4 +1,4 @@
-FROM node:9.11.1-alpine
+FROM node:9.11.1
 RUN mkdir -p /usr/src/wtt-frontend
 WORKDIR /usr/src/wtt-frontend
 COPY package.json /usr/src/wtt-frontend
