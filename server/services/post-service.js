@@ -6,13 +6,14 @@ module.exports = class PostService {
     this.find_all = this.find_all.bind(this)
     this.find_one = this.find_one.bind(this)
     this.create = this.create.bind(this)
+    this.like = this.like.bind(this)
   }
 
   find_all(condition = {}, select = null, offset = 0, limit = 10, sort = {}, callback) {
     let { post_ids, title, content, user_id, tags } = condition
     if (post_ids) post_ids = post_ids.join(',')
     if (tags) tags = tags.join(',')
-    
+
     let query = {}
     let list = Object.assign({}, { post_ids, title, content, user_id, tags })
     let list_key = Object.keys(list)
@@ -47,14 +48,30 @@ module.exports = class PostService {
   }
 
   create(authorization, post, callback) {
+    console.log(post)
+
     let url = `${api_url}/posts/`
     let req = unirest.post(url)
       .headers({ authorization })
       .type('json')
       .send({ post })
-
     req.end(res => {
-      return callback(res.error, res.body.created)
+      console.log(res.body);
+      return callback(res.error, res.body.post)
+    })
+  }
+
+  like(authorization, data, callback) {
+    console.log(post)
+
+    let url = `${api_url}/favorites/`
+    let req = unirest.put(url)
+      .headers({ authorization })
+      .type('json')
+      .send(data)
+    req.end(res => {
+      console.log(res.body);
+      return callback(res.error, res.body.updated)
     })
   }
 }

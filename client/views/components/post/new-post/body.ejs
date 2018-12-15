@@ -13,9 +13,10 @@
         </div>
         <ul class="dropdown-menu">
           <% tags.forEach(tag => { %>
-            <li value="<%= tag %>">
-              <a><%= tag %></a>
-            </li>
+          <li value="<%= tag %>">
+            <a>
+              <%= tag %></a>
+          </li>
           <% } )%>
         </ul>
       </div>
@@ -28,7 +29,6 @@
 
   <div class="button">
     <button id="dangbai">Đăng bài</button>
-    <button id="luunhap">Lưu nháp</button>
   </div>
 </div>
 
@@ -36,10 +36,39 @@
   $(function () {
     $('#rte-tool').froalaEditor({ iframe: true })
     $('#rte-tool').froalaEditor('html.set', '')
+
     $('#rte-tool').removeAttr('data-product-description-temp')
     $(document).on('click', '[data-toggle="lightbox"]', function (event) {
       event.preventDefault()
       $(this).ekkoLightbox()
+    });
+    $('#cb-tagsinput').tagsinput('add', 'default');
+
+    $('#dangbai').on('click', function (event) {
+      event.preventDefault()
+      var content = $('#rte-tool').val();
+      var title = $('#title').val();
+      var tags = $('#cb-tagsinput').tagsinput('items')
+      if (!tags || tags.length == 0) {
+        tags = ['default']
+      }
+      $.ajax({
+        type: 'POST',
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        contentType: 'application/json',
+        data: JSON.stringify({
+          "content": content,
+          "tags": tags,
+          "title": title
+        }),
+        url: '/posts',
+        success: function (data) {
+          window.location.href = `/posts/${data.post_id}`
+        }
+      });
     });
   });
 </script>

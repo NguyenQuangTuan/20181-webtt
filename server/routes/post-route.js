@@ -49,6 +49,8 @@ module.exports = (app, authen_controller,
       let { notifications, noti_count } = res
       let { user } = res
       let { post } = res
+      console.log(post)
+
       res.render('post/detail-post', {
         title: 'Share.com',
         user, post, notifications, noti_count
@@ -56,5 +58,19 @@ module.exports = (app, authen_controller,
     }
   )
 
+  app.post('/posts',
+    authen_middleware.get_token,
+    post_detail_controller.create,
+    (req, res) => {
+      return res.status(200).send(res.post)
+    }
+  )
 
+  app.put('/favorites',
+    authen_middleware.get_token,
+    post_detail_controller.like,
+    (req, res) => {
+      return res.status(200).send(res.post)
+    }
+  )
 }

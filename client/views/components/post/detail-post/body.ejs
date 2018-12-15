@@ -4,8 +4,10 @@
       <div class="detailView">
         <a href=""><label>
             <%= post.title %></label></a><br>
-        <span><img src="/img/test.jpg" alt="ảnh"></span>
-        <span>huyenharu viết ngày 12/7/2018</span>
+        <span><img src="<%= post.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh"></span>
+        <span>
+          <%= post.user.full_name%> viết ngày 12/7/2018</span>
+        <br />
         <p>
           <%- post.content%>
         </p>
@@ -56,26 +58,67 @@
     </div>
     <div class="col-sm-3">
       <div class="row likecmt">
-        <div class="profile ">
-          <div class="col-sm-4">
-            <img src="/img/test.jpg" alt="ảnh">
-          </div>
-          <div class="col-sm-7">
-            <label>Huyen Haru</label><br>
-            <span>0 bài viết</span><br>
-            <span>0 người theo dõi</span>
+        <div class="number-like">
+          <div class="col-sm-6">
+            <a id="like"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+            <span id="num-like">
+              <%= post.total_like%></span>
           </div>
         </div>
 
-        <div class="number-like">
-          <div class="col-sm-6">
-            <a><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
-            <span>110</span>
+        <div class="profile" id="to-profile" data-id="<%= post.user.user_id%>" data-post-id="<%= post.post_id%>">
+          <div class="col-sm-4">
+            <img src="<%= post.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
+          </div>
+          <div class="col-sm-7">
+            <label>
+              <%= post.user.full_name%></label><br>
+            <!-- <span>0 bài viết</span><br>
+            <span>0 người theo dõi</span> -->
           </div>
         </div>
+
+
       </div>
     </div>
 
   </div>
 
 </div>
+
+<script>
+  $(function () {
+    $('#to-profile').on('click', function (event) {
+      event.preventDefault();
+      var user_id = $('#to-profile').attr('data-id')
+      if (user_id) {
+        window.location.href = `/users/${user_id}`
+      }
+    });
+    $('#like').on('click', function (event) {
+      event.preventDefault();
+      var post_id = $('#to-profile').attr('data-post-id')
+      if (post_id) {
+        $.ajax({
+          type: 'PUT',
+          crossDomain: true,
+          headers: {
+            "Access-Control-Allow-Origin": "*"
+          },
+          data: JSON.stringify({
+            "post_id": post_id,
+            "like": true
+          }),
+          contentType: 'application/json',
+          url: '/favorites',
+          success: function (data) {
+            console.log('success');
+            var currentLike =Number($('#num-like').text()) || 0;
+
+            $('#num-like').text(++currentLike)
+          }
+        });
+      }
+    });
+  });
+</script>

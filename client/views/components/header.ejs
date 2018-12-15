@@ -62,11 +62,11 @@
         </li>
         <li>
           <span>
-            <img src="/img/test.jpg" alt="ảnh">
+            <img src="<%= user.avatar_url || '/img/ava-default.png' %>" alt="ảnh">
           </span>
           <span><i class="fa fa-caret-down" aria-hidden="true" style="color: white"></i></span>
           <div class="dropdown dropdown-menu-right">
-            <p><a href="/mypage/:user_id"><i class="fa fa-user" aria-hidden="true"></i>Trang cá nhân</a></p>
+            <p><a href="/mypage"><i class="fa fa-user" aria-hidden="true"></i>Trang cá nhân</a></p>
             <p><a href=""><i class="fa fa-cog" aria-hidden="true"></i>Cài đặt</a></p>
             <p><a href="" id="log-out"><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></p>
           </div>
