@@ -6,6 +6,8 @@ module.exports = (app, authen_controller,
   review_controller,
   tag_controller,
   notification_controller) => {
+
+
   app.get('/posts/new',
     authen_middleware.get_token,
     authen_controller.checkuser,
@@ -19,6 +21,7 @@ module.exports = (app, authen_controller,
     // Other handle
     tag_controller.find_all,
     notification_controller.find_by_page,
+    notification_controller.get_unseen_number,
     (req, res, next) => {
       let { user } = res
       let { tags } = res

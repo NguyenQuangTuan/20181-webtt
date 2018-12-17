@@ -1,16 +1,31 @@
 const unirest = require('unirest')
-const { api_url } = require('../config/index')
+// const { api_url } = require('../config/index')
+const api_url = 'http://localhost:8081'
 
 module.exports = class UserService {
   constructor() {
+    this.autocomplete = this.autocomplete.bind(this)
     this.find_all = this.find_all.bind(this)
     this.find_one = this.find_one.bind(this)
     this.get_me = this.get_me.bind(this)
     this.get_follows = this.get_follows.bind(this)
   }
 
+  autocomplete(condition = {}, callback) {
+    let { full_name = '' } = condition
+
+    let url = `${api_url}/users/autocomplete`
+    let req = unirest.get(url)
+      .query(Object.assign({}, { full_name }))
+
+    req.end(res => {
+      return callback(res.error, res.body.users)
+    })
+  }
+
   find_all(condition = {}, select = null, offset = 0, limit = null, sort = {}, callback) {
     let { user_ids, full_name } = condition
+    if(user_ids && user_ids.length > 0) user_ids = user_ids.join(',')
     let query = {}
     let list = Object.assign({}, { user_ids, full_name })
     let list_key = Object.keys(list)

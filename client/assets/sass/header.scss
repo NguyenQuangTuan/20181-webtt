@@ -101,11 +101,6 @@
     text-decoration: none;
 }
 
-.header .nav .search .input{
-    margin-top: 5px;
-    border-radius: 25px;
-}
-
 .header .nav .navbar-nav span{
     margin-top: 30px;
     }
@@ -176,4 +171,31 @@
   margin:5px;
   background:#EEEEEE;
   border-radius:4px;
+  }
+
+  .easy-autocomplete-container {
+    z-index: 2147483647;
+  }
+
+  .easy-autocomplete.eac-square input{
+    height: 35px;
+    min-width:300px;
+    border-radius: 20px;
+  }
+
+  .easy-autocomplete.eac-square ul .eac-category{
+    font-weight: 700;
+    font-size: 16px;
+    color: rgb(4, 100, 100);
+  }
+
+  .easy-autocomplete-container li{
+    height: 30px;
+    width: 300px;
+  }
+
+  .easy-autocomplete-container ul li div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }

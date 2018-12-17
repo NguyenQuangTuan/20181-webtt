@@ -11,7 +11,7 @@ module.exports = class NotificationController {
     }
 
     save_refresh_token(req, res, next) {
-        console.log('Cookies: ', req.cookies)
+        // console.log('Cookies: ', req.cookies)
         let { refresh_token, wtt_token } = req.cookies
         if (wtt_token) {
             this.notification_service.save_refresh_token(wtt_token, refresh_token, (err, success) => {
@@ -29,7 +29,7 @@ module.exports = class NotificationController {
     }
 
     remove_refresh_token(req, res, next) {
-        console.log('Cookies: ', req.cookies)
+        // console.log('Cookies: ', req.cookies)
         let { refresh_token, wtt_token } = req.cookies
 
         this.notification_service.remove_refresh_token(wtt_token, refresh_token, (err, deleted) => {

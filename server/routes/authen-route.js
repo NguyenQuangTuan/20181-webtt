@@ -2,6 +2,12 @@ const authen_middleware = require('../middlewares/authen-middleware')
 
 
 module.exports = (app, authen_controller, notification_controller) => {
+  app.get('/',
+    (req, res, next) => {
+      return res.redirect('/login')
+    }
+  )
+
   app.get('/login',
     authen_middleware.get_token,
     authen_controller.checkuser,

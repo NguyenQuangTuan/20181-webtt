@@ -1,8 +1,6 @@
 <div class="content">
   <div class="row">
     <div class="col-sm-8">
-      <span><b>" Programming is like sex: one mistake and you have to support it for the rest of your life. "</b> -<i>Michael
-          Sinz</i></span>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="manyView-tab" data-toggle="tab" href="#newView" role="tab" aria-controls="home"
@@ -29,10 +27,16 @@
                   <img class="img" src="/img/test.jpg" alt="ảnh">
                 </div>
                 <div class="col-sm-11">
-                  <a href="/posts/<%= post.post_id%>"><label>
-                      <%= post.title %></label></a>
-                  <span>
-                    <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                  <div class="row">
+                    <div class="col-md-11">
+                      <a class="title" href="/posts/<%= post.post_id%>"><label>
+                          <%= post.title %></label></a>
+                    </div>
+                    <div class="col-md-1">
+                      <div class="total-like">
+                        <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></div>
+                    </div>
+                  </div>
                   <p>
                     <%= post.short_content%>
                   </p>
@@ -59,10 +63,16 @@
                   <img class="img" src="/img/test.jpg" alt="ảnh">
                 </div>
                 <div class="col-sm-11">
-                  <a href="/posts/<%= post.post_id%>"><label>
-                      <%= post.title %></label></a>
-                  <span>
-                    <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                  <div class="row">
+                    <div class="col-md-11">
+                      <a class="title" href="/posts/<%= post.post_id%>"><label>
+                          <%= post.title %></label></a>
+                    </div>
+                    <div class="col-md-1">
+                      <div class="total-like">
+                        <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></div>
+                    </div>
+                  </div>
                   <p>
                     <%= post.short_content%>
                   </p>
@@ -87,10 +97,16 @@
                   <img class="img" src="/img/test.jpg" alt="ảnh">
                 </div>
                 <div class="col-sm-11">
-                  <a href="/posts/<%= post.post_id%>"><label>
-                      <%= post.title %></label></a>
-                  <span>
-                    <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                  <div class="row">
+                    <div class="col-md-11">
+                      <a class="title" href="/posts/<%= post.post_id%>"><label>
+                          <%= post.title %></label></a>
+                    </div>
+                    <div class="col-md-1">
+                      <div class="total-like">
+                        <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></div>
+                    </div>
+                  </div>
                   <p>
                     <%= post.short_content%>
                   </p>
@@ -120,7 +136,8 @@
               <p><label>
                   <%= user.full_name%></label></p>
               <!-- <span>0 bài viết</span><br> -->
-              <span><%= follows.length%> người theo dõi</span>
+              <span>
+                <%= follows.length%> người theo dõi</span>
             </div>
           </div>
         </div>

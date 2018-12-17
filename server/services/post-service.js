@@ -3,10 +3,30 @@ const { api_url } = require('../config/index')
 
 module.exports = class PostService {
   constructor() {
+    this.autocomplete = this.autocomplete.bind(this)
     this.find_all = this.find_all.bind(this)
     this.find_one = this.find_one.bind(this)
     this.create = this.create.bind(this)
     this.like = this.like.bind(this)
+  }
+
+  autocomplete(condition = {}, callback) {
+    let { title, content } = condition
+    let query = {}
+    let list = Object.assign({}, { title, content })
+    let list_key = Object.keys(list)
+    list_key.map(key => {
+      if (list[key]) Object.assign(query, { [key]: list[key] })
+    })
+
+    let url = `${api_url}/posts/autocomplete`
+
+    let req = unirest.get(url)
+      .query(Object.assign({}, query))
+
+    req.end(res => {
+      return callback(res.error, res.body.posts)
+    })
   }
 
   find_all(condition = {}, select = null, offset = 0, limit = 10, sort = {}, callback) {

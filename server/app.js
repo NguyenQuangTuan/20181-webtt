@@ -57,12 +57,14 @@ const TagController = require('./controllers/tag-controller')
 const UserController = require('./controllers/user-controller')
 const ReviewController = require('./controllers/review-controller')
 const PostController = require('./controllers/post-controller')
+const SearchController = require('./controllers/search-controller')
 
 const authen_controller = new AuthenController(authen_service)
 const tag_controller = new TagController(tag_service)
 const user_controller = new UserController(user_service)
 const review_controller = new ReviewController(review_service, user_service)
 const post_controller = new PostController(post_service)
+const search_controller = new SearchController(post_service, user_service)
 
 // Routes
 require('./routes/home-route')(app, home_controller, authen_controller, tag_controller, user_controller, notification_controller)
@@ -70,7 +72,8 @@ require('./routes/post-route')(app, authen_controller, user_controller, post_det
 require('./routes/authen-route')(app, authen_controller, notification_controller)
 require('./routes/user-route')(app, authen_controller, user_controller, post_controller, notification_controller)
 require('./routes/notification-route')(app, notification_controller)
-require('./routes/search-route')(app, notification_controller)
+require('./routes/header-route')(app, search_controller, authen_controller, notification_controller, user_controller, tag_controller)
+
 // Locals
 require('./locals/locals')(app.locals)
 

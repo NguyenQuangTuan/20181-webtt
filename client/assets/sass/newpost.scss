@@ -3,7 +3,7 @@
     margin: auto;
 }
 
-.newpost .input input{
+.newpost .input .title{
     width: 100%;
     padding: 0.65rem 0.5rem;
     border: none;
@@ -40,4 +40,13 @@
     color: white;
     font-weight: bold;
     margin-left: 10px;
+}
+
+.bootstrap-tagsinput{
+    margin-bottom: 20px;
+}
+
+.bootstrap-tagsinput input{
+    width: 300px;
+    height: 30px;
 }

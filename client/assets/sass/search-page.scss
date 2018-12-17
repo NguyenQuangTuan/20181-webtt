@@ -1,0 +1,17 @@
+.suggest-title.search{
+  margin-top: 0px;
+  display: inline-block;
+  
+  ul::after {
+    clear: both;
+    content: "";
+    display: block;
+
+
+  }
+  li {
+    margin: 0 2px;
+    // padding: 5px;
+    // vertical-align: top;
+  }
+}

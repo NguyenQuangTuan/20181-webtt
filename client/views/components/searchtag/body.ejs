@@ -5,7 +5,14 @@
         <%if(posts.length > 0) { %>
         <div>
           <label>Bài viết</label>
-          
+          <% if(tag) { %>
+          <div class="suggest-title search">
+            <ul>
+              <li><a>
+                  <%= tag %></a></li>
+            </ul>
+          </div>
+          <% } %>
         </div>
 
         <% posts.map(post => { %>

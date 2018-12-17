@@ -23,16 +23,9 @@ module.exports = class HomeController {
           (posts, cb2) => {
             if (posts.length == 0) return cb2(null, [])
             let user_ids = posts.map(post => post.user_id)
-            this.user_service.find_all(user_ids, null, 0, null, {}, (err, users) => {
+            this.user_service.find_all({ user_ids }, null, 0, null, {}, (err, users) => {
               if (err) return cb2(null, [])
-
-              // handle posts
-              posts = posts.map(post => {
-                let index = lodash.findLastIndex(users)
-                if (index == -1) return Object.async(post, { user: null })
-                else return Object.assign(post, { user: users[index] })
-              })
-
+              handle_posts(posts, users)
               return cb2(null, posts)
             })
           }
@@ -51,16 +44,9 @@ module.exports = class HomeController {
           (posts, cb2) => {
             if (posts.length == 0) return cb2(null, [])
             let user_ids = posts.map(post => post.user_id)
-            this.user_service.find_all(user_ids, null, 0, null, {}, (err, users) => {
+            this.user_service.find_all({ user_ids }, null, 0, null, {}, (err, users) => {
               if (err) return cb2(null, [])
-
-              // handle posts
-              posts = posts.map(post => {
-                let index = lodash.findLastIndex(users)
-                if (index == -1) return Object.async(post, { user: null })
-                else return Object.assign(post, { user: users[index] })
-              })
-
+              handle_posts(posts, users)
               return cb2(null, posts)
             })
           }
@@ -86,16 +72,9 @@ module.exports = class HomeController {
           (posts, cb2) => {
             if (posts.length == 0) return cb2(null, [])
             let user_ids = posts.map(post => post.user_id)
-            this.user_service.find_all(user_ids, null, 0, null, {}, (err, users) => {
+            this.user_service.find_all({ user_ids }, null, 0, null, {}, (err, users) => {
               if (err) return cb2(null, [])
-
-              // handle posts
-              posts = posts.map(post => {
-                let index = lodash.findLastIndex(users)
-                if (index == -1) return Object.async(post, { user: null })
-                else return Object.assign(post, { user: users[index] })
-              })
-
+              handle_posts(posts, users)
               return cb2(null, posts)
             })
           }
@@ -113,4 +92,15 @@ module.exports = class HomeController {
       }
     })
   }
+}
+
+const handle_posts = (posts, users) => {
+  // handle posts
+  posts = posts.map(post => {
+    let index = lodash.findLastIndex(users, { user_id: post.user_id })
+    if (index == -1) return Objectasyn.c(post, { user: null })
+    else return Object.assign(post, { user: users[index] })
+  })
+
+  return posts
 }
