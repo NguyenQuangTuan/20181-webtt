@@ -1,5 +1,5 @@
 .detailView label{
-    margin-right: 520px;
+    margin-right: 50px;
     color: #00b5ad;
     font-size: 25px;
 }
@@ -95,4 +95,12 @@ button{
      padding: 5px;
      background: #00b5ad;
      color: white;
+ }
+
+ #like .like-true{
+     color: blue;
+ }
+
+ #like .like-false{
+     color: black;
  }

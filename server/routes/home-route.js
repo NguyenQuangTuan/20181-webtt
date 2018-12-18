@@ -30,7 +30,6 @@ module.exports = (app, home_controller,
       let { bv_hay, bv_moi, bv_yt } = res
       let { tags } = res
       let { user, follows } = res
-      console.log(user)
       res.render('home', {
         title: 'Share.com',
         bv_hay, bv_moi, bv_yt, tags, user, notifications,noti_count,follows

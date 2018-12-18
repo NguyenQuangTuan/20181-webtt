@@ -71,6 +71,7 @@ require('./routes/home-route')(app, home_controller, authen_controller, tag_cont
 require('./routes/post-route')(app, authen_controller, user_controller, post_detail_controller, review_controller, tag_controller, notification_controller)
 require('./routes/authen-route')(app, authen_controller, notification_controller)
 require('./routes/user-route')(app, authen_controller, user_controller, post_controller, notification_controller)
+require('./routes/review-route')(app, review_controller)
 require('./routes/notification-route')(app, notification_controller)
 require('./routes/header-route')(app, search_controller, authen_controller, notification_controller, user_controller, tag_controller)
 

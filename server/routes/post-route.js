@@ -47,16 +47,17 @@ module.exports = (app, authen_controller,
     notification_controller.find_by_page,
     notification_controller.get_unseen_number,
     post_detail_controller.get_post,
+    post_detail_controller.check_like,
     review_controller.get_review,
     (req, res, next) => {
       let { notifications, noti_count } = res
       let { user } = res
       let { post } = res
-      console.log(post)
-
+      let { reviews } = res
+      let { is_liked } = res
       res.render('post/detail-post', {
-        title: 'Share.com',
-        user, post, notifications, noti_count
+        title: post.title,
+        user, post, notifications, noti_count, reviews, is_liked
       })
     }
   )
@@ -73,7 +74,7 @@ module.exports = (app, authen_controller,
     authen_middleware.get_token,
     post_detail_controller.like,
     (req, res) => {
-      return res.status(200).send(res.post)
+      return res.status(200).send(res.updated)
     }
   )
 }

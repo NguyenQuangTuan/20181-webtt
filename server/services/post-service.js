@@ -1,5 +1,6 @@
 const unirest = require('unirest')
 const { api_url } = require('../config/index')
+const _ = require('lodash')
 
 module.exports = class PostService {
   constructor() {
@@ -8,6 +9,7 @@ module.exports = class PostService {
     this.find_one = this.find_one.bind(this)
     this.create = this.create.bind(this)
     this.like = this.like.bind(this)
+    this.check_like = this.check_like.bind(this)
   }
 
   autocomplete(condition = {}, callback) {
@@ -82,8 +84,6 @@ module.exports = class PostService {
   }
 
   like(authorization, data, callback) {
-    console.log(post)
-
     let url = `${api_url}/favorites/`
     let req = unirest.put(url)
       .headers({ authorization })
@@ -92,6 +92,23 @@ module.exports = class PostService {
     req.end(res => {
       console.log(res.body);
       return callback(res.error, res.body.updated)
+    })
+  }
+
+  check_like(authorization, post_id, callback) {
+
+    let url = `${api_url}/favorites/`
+    let req = unirest.get(url)
+      .headers({ authorization })
+      .type('json')
+
+    req.end(res => {
+      console.log(res.body);
+      let { post_ids } = res.body;
+      if (!post_ids || !_.isArray(post_ids)) {
+        return callback(res.error, false)
+      }
+      return callback(res.error, post_ids.indexOf(post_id) >= 0)
     })
   }
 }

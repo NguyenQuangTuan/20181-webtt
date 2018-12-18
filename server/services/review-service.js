@@ -37,18 +37,17 @@ module.exports = class ProductService {
     let url = `${api_url}/posts/${post_id}/reviews/${review_id}/subreviews`
     let req = unirest.get(url)
       .query(offset, limit)
-
     req.end(res => {
       return callback(res.error, res.body.sub_reviews)
     })
   }
 
-  create_sub_review(authorization, post_id, review_id, post, callback) {
-    let url = `${api_url}/posts/${post_id}/reviews`
+  create_sub_review(authorization, post_id, review_id, sub_review, callback) {
+    let url = `${api_url}/posts/${post_id}/reviews/${review_id}/subreviews`
     let req = unirest.post(url)
       .headers({ authorization })
       .type('json')
-      .send({ post })
+      .send({ sub_review })
 
     req.end(res => {
       return callback(res.error, res.body.sub_review)

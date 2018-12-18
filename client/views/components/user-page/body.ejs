@@ -3,16 +3,16 @@
         <div class="suggest-title" style="margin-bottom: 10px;">
             <i class="fa fa-tags" aria-hidden="true">&nbsp&nbsp<i style="color: #333;">Chủ đề nổi bật</i></i>
             <ul>
-                <li><a>huyenharu</a></li>
-                <li><a>haruharu</a></li>
+                <li><a>javascript</a></li>
+                <li><a>golang</a></li>
             </ul>
         </div>
         <div class="single-post">
             <% posts.map(post => { %>
             <div class="new-view">
-                <a href="/posts/detail"><label>
+                <a href="<%= '/posts/'+ post.post_id %>"><label>
                         <%= post.title %></label></a>
-                <span>110 <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                <span><%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
                 <p>
                     <%= post.short_content%>
                 </p>

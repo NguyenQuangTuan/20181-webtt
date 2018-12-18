@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-sm-9">
       <div class="detailView">
-        <a href=""><label>
-            <%= post.title %></label></a><br>
+        <label>
+          <%= post.title %></label><br>
         <span><img src="<%= post.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh"></span>
         <span>
           <%= post.user.full_name%> viết ngày 12/7/2018</span>
@@ -13,46 +13,72 @@
         </p>
       </div class="mt-2">
       <h4>Bình luận</h4>
-      <div class=" row comment">
-        <div class="col-sm-1">
-          <img class="img" src="/img/test.jpg" alt="ảnh">
-        </div>
-        <div class="col-sm-11">
-          <label>Huyen Haru</label>
-          <span>3 tháng</span>
-          <br>
-          <span>làm cách mạng thật gian nan</span><br>
+      <div id="comment-list">
+        <% reviews.map(review => { %>
+        <div class=" row comment">
+          <div class="col-sm-1">
+            <a href="<%= '/users/' +review.user.user_id%>">
 
-          <div class=" row comment1">
-            <div class="col-sm-1">
-              <img src="/img/test.jpg" alt="ảnh">
+              <img class="img" src="<%= review.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
+            </a>
+          </div>
+          <div class="col-sm-11">
+            <a href="<%= '/users/' +review.user.user_id%>">
+
+              <label>
+                <%= review.full_name %></label></a>
+            <span>
+              <%= review.time %></span>
+            <br>
+            <span>
+              <%= review.content %></span><br>
+
+
+
+            <div id="<%= 'sub-review-list-'+review.review_id %>">
+              <% review.sub_reviews.map(sub_review => { %>
+              <div class=" row comment1">
+                <div class="col-sm-1">
+                  <a href="<%= '/users/' +sub_review.user.user_id%>">
+
+                    <img src="<%= sub_review.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
+                  </a>
+                </div>
+                <div class="col-sm-11">
+                  <a href="<%= '/users/' +sub_review.user.user_id%>">
+
+                    <label>
+                      <%= sub_review.full_name %></label>
+                  </a>
+                  <span>
+                    <%= sub_review.time %></span>
+                  <br>
+                  <span>
+                    <%= sub_review.content %></span>
+                </div>
+              </div>
+              <% } )%>
             </div>
-            <div class="col-sm-11">
-              <label>Huyen Haru</label>
-              <span>3 tháng</span>
-              <br>
-              <span>làm cách mạng thật gian nan</span>
+            <div class="row comment1">
+              <div class="col-sm-1">
+                <img src="<%= user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
+              </div>
+              <div class="col-sm-11">
+                <textarea id="<%= 'textarea-'+review.review_id%>" placeholder="Ý kiến (markdown)"></textarea>
+                <button class="reply" review-id="<%= review.review_id%>">Trả lời</button>
+              </div>
             </div>
           </div>
-
-          <div class="row comment1">
-            <div class="col-sm-1">
-              <img src="/img/test.jpg" alt="ảnh">
-            </div>
-            <div class="col-sm-11">
-              <textarea placeholder="Ý kiến (markdown)"></textarea>
-              <button>Trả lời</button>
-            </div>
-          </div>
         </div>
+        <% } )%>
       </div>
       <div class="row comment">
         <div class="col-sm-1">
-          <img class="img" src="/img/test.jpg" alt="ảnh">
+          <img class="img" src="<%= user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
         </div>
         <div class="col-sm-11">
-          <textarea placeholder="Ý kiến (markdown)"></textarea>
-          <button>Trả lời</button>
+          <textarea id="comment-content" placeholder="Ý kiến (markdown)"></textarea>
+          <button id="comment">Trả lời</button>
         </div>
       </div>
     </div>
@@ -60,7 +86,8 @@
       <div class="row likecmt">
         <div class="number-like">
           <div class="col-sm-6">
-            <a id="like"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+            <a href="#" id="like"><i id="like-state" data-like="<%= is_liked %>" class="<%= 'fa fa-thumbs-up like-'+is_liked%>"
+                aria-hidden="true"></i></a>
             <span id="num-like">
               <%= post.total_like%></span>
           </div>
@@ -68,11 +95,15 @@
 
         <div class="profile" id="to-profile" data-id="<%= post.user.user_id%>" data-post-id="<%= post.post_id%>">
           <div class="col-sm-4">
-            <img src="<%= post.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
+            <a href="<%= '/users/' +post.user.user_id%>">
+              <img src="<%= post.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
+            </a>
           </div>
           <div class="col-sm-7">
-            <label>
-              <%= post.user.full_name%></label><br>
+            <a href="<%= '/users/' +post.user.user_id%>">
+              <label>
+                <%= post.user.full_name%></label></a>
+            <br>
             <!-- <span>0 bài viết</span><br>
             <span>0 người theo dõi</span> -->
           </div>
@@ -88,17 +119,27 @@
 
 <script>
   $(function () {
-    $('#to-profile').on('click', function (event) {
-      event.preventDefault();
-      var user_id = $('#to-profile').attr('data-id')
-      if (user_id) {
-        window.location.href = `/users/${user_id}`
-      }
-    });
+    var post_id = $('#to-profile').attr('data-post-id')
+
+    // $('#to-profile').on('click', function (event) {
+    //   event.preventDefault();
+    //   var user_id = $('#to-profile').attr('data-id')
+    //   if (user_id) {
+    //     window.location.href = `/users/${user_id}`
+    //   }
+    // });
+    let isRequestLike = false;
+    //like
     $('#like').on('click', function (event) {
       event.preventDefault();
-      var post_id = $('#to-profile').attr('data-post-id')
+      if (isRequestLike) {
+        return
+      }
       if (post_id) {
+        isRequestLike = true;
+        let like = $('#like-state').attr('data-like') == 'true';
+        let newLike = !like
+        console.log(like, newLike)
         $.ajax({
           type: 'PUT',
           crossDomain: true,
@@ -107,18 +148,123 @@
           },
           data: JSON.stringify({
             "post_id": post_id,
-            "like": true
+            "like": newLike
           }),
           contentType: 'application/json',
           url: '/favorites',
           success: function (data) {
-            console.log('success');
-            var currentLike =Number($('#num-like').text()) || 0;
+            var currentLike = Number($('#num-like').text()) || 0;
+            isRequestLike = false;
+            if (newLike) {
+              $('#like-state').attr({
+                "class": "fa fa-thumbs-up like-true",
+                "data-like": "true"
+              })
+              $('#num-like').text(++currentLike)
+            } else {
+              $('#like-state').attr({
+                "class": "fa fa-thumbs-up like-false",
+                "data-like": "false"
+              })
+              $('#num-like').text(--currentLike)
+            }
 
-            $('#num-like').text(++currentLike)
           }
         });
       }
+    });
+
+    // reply
+    $('.reply').on('click', function (event) {
+      event.preventDefault()
+      console.log('click reply')
+      var review_id = event.target.getAttribute('review-id')
+      var content = $(`#textarea-${review_id}`).val();
+      if (!content.trim()) {
+        return
+      }
+      var sub_review = { content }
+      $.ajax({
+        type: 'POST',
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        contentType: 'application/json',
+        data: JSON.stringify({
+          "sub_review": sub_review,
+          "review_id": review_id,
+          "post_id": post_id
+        }),
+        url: '/subreviews',
+        success: function (data) {
+          console.log(data);
+          $(`#textarea-${review_id}`).val('');
+          let { full_name, content } = data;
+          let time = 'Vừa xong'
+          var newReply = '<div class=" row comment1">' +
+            '        <div class="col-sm-1">' +
+            '          <img class="img" src="/img/ava-default.png" alt="ảnh">' +
+            '        </div>' +
+            '        <div class="col-sm-11">' +
+            `          <label>${full_name}</label>` +
+            `          <span>${time}</span>` +
+            '          <br>' +
+            `          <span>${content}</span><br>` +
+            '            </div>' +
+            '            </div>'
+          $(`#sub-review-list-${review_id}`).append(newReply);
+        }
+      });
+    });
+
+    // comment
+    $(`#comment`).on('click', function (event) {
+      event.preventDefault()
+      var content = $('#comment-content').val();
+      var review = { content }
+      $.ajax({
+        type: 'POST',
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        contentType: 'application/json',
+        data: JSON.stringify({
+          "review": review,
+          "post_id": post_id
+        }),
+        url: '/reviews',
+        success: function (data) {
+          console.log(data);
+          $('#comment-content').val('')
+          let { full_name, content } = data;
+          let time = 'Vừa xong'
+          var newCommentHtml = '<div class=" row comment">' +
+            '        <div class="col-sm-1">' +
+            '          <img class="img" src="/img/ava-default.png" alt="ảnh">' +
+            '        </div>' +
+            '        <div class="col-sm-11">' +
+            `          <label>${full_name}</label>` +
+            `          <span>${time}</span>` +
+            '          <br>' +
+            `          <span>${content}</span><br>` +
+            '' +
+            '' +
+            '' +
+            '          <div class="row comment1">' +
+            '            <div class="col-sm-1">' +
+            '              <img src="/img/ava-default.png" alt="ảnh">' +
+            '            </div>' +
+            '            <div class="col-sm-11">' +
+            '              <textarea placeholder="Ý ki?n (markdown)">' +
+            '            </div>' +
+            '            </div>' +
+            '            </div>' +
+            '            </div>'
+          $("#comment-list").append(newCommentHtml);
+        }
+      });
     });
   });
 </script>

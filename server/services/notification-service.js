@@ -19,14 +19,12 @@ module.exports = class NotificationService {
             .send({ refresh_token })
 
         req.end(res => {
-            console.log("save", res.status)
 
             return callback(res.error, res.body.result.success)
         })
     }
 
     remove_refresh_token(authorization, refresh_token, callback) {
-        console.log('check',authorization);
         let url = `${api_url}/notifcations-users/users-refresh-token`
         let req = unirest.delete(url)
             .headers({ authorization })
