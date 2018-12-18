@@ -4,7 +4,9 @@
       <div class="single-post" style="width: 80%; margin: auto">
         <%if(posts.length > 0) { %>
         <div>
-          <label>Bài viết</label>
+          <div class=" type-search">
+              <label>Bài viết</label>
+          </div>          
           <% if(tag) { %>
           <div class="suggest-title search">
             <ul>
@@ -43,26 +45,6 @@
         </div>
         <% } )%>
         <% } %>
-
-        <% if(users.length > 0) { %>
-        <label>Tác giả</label>
-        <% users.map(user => { %>
-        <div class="new-view">
-          <div class="row">
-            <div class="col-sm-1">
-              <img class="img" src="<%= user.avatar_url || '/img/test.jpg' %>" alt="ảnh">
-            </div>
-            <div class="col-sm-11">
-              <a class="title" href="#">
-                <label>
-                  <%= user.full_name %>
-                </label>
-              </a>
-            </div>
-          </div>
-        </div>
-        <% } )%>
-        <% } %>
       </div>
     </div>
 
@@ -72,7 +54,7 @@
         <i class="fa fa-tags" aria-hidden="true">&nbsp&nbsp<i style="color: #333;">Chủ đề nổi bật</i></i>
         <ul>
           <% tags.map(tag => { %>
-          <li><a>
+          <li><a href="/searchtag?tag=<%=tag%>">
               <%= tag %></a></li>
           <% } )%>
         </ul>

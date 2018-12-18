@@ -87,21 +87,21 @@ module.exports = class SearchController {
 
   searchtag(req, res, next) {
     let { tag } = req.query
-    let tags = [].push(tag)
+    let tags = [tag]
 
     async.waterfall([
       cb => {
         this.post_service.find_all({ tags }, null, 0, 10, {}, (err, posts) => {
-          return cb2(err, posts)
+          return cb(err, posts)
         })
       },
       (posts, cb) => {
-        if (posts.length == 0) return cb2(null, [])
+        if (posts.length == 0) return cb(null, [])
         let user_ids = posts.map(post => post.user_id)
-        this.user_service.find_all({user_ids}, null, 0, null, {}, (err, users) => {
-          if (err) return cb2(null, [])
+        this.user_service.find_all({ user_ids }, null, 0, null, {}, (err, users) => {
+          if (err) return cb(null, [])
           posts = handle_posts(posts, users)
-          return cb2(null, posts)
+          return cb(null, posts)
         })
       }
     ], (err, posts) => {

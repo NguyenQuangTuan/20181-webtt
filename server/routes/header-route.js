@@ -57,7 +57,7 @@ module.exports = (app, search_controller, authen_controller, notification_contro
       let { notifications, noti_count } = res
       let { posts, tag } = res
       let { tags } = res
-      res.render('search-page', {
+      res.render('search-tag', {
         title: 'Share.com',
         user,
         notifications, noti_count,
