@@ -47,7 +47,7 @@ module.exports = (app, authen_controller, user_controller, post_controller, noti
       let { notifications, noti_count, user, posts, follows, target_user } = res
       console.log(target_user)
       res.render('user-page', {
-        title: 'Mypage',
+        title: target_user.full_name,
         posts, user, notifications, noti_count, follows, target_user
       })
     }
