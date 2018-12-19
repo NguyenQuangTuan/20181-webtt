@@ -26,49 +26,50 @@
             </div> -->
         </div>
     </div>
-    <div class="col-sm-1"></div>
-    <div class="col-sm-3">
-        <div class="meta-profile">
-            <div class="row">
-                <div class="col-sm-5">
-                    <img src="<%= target_user.avatar_url || '/img/ava-default.png' %>" alt="ảnh">
-                </div>
-                <div class="col-sm-7">
-                    <p><label>
-                            <%= target_user.full_name%></label></p>
-                    <span>
-                        <%= follows.length%> người theo dõi</span>
-                    <% if(user.user_id!=target_user.user_id){%>
-                    <button id="follow" data-id="<%= target_user.user_id%>"><i class="ti-rss-alt"></i> &nbsp Follow</button><br>
-                    <% }%>
-                </div>
-            </div>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3">
+    <div class="meta-profile">
+      <div class="row">
+        <div class="col-sm-5">
+          <img src="<%= target_user.avatar_url || '/img/ava-default.png' %>" alt="ảnh">
         </div>
+        <div class="col-sm-7">
+          <p><label>
+              <%= target_user.full_name%></label></p>
+          <span>
+            <%= follows.length%> người theo dõi</span>
+          <% if(user.user_id!=target_user.user_id){%>
+          <button id="follow" data-id="<%= target_user.user_id%>"><i class="ti-rss-alt"></i> &nbsp Follow</button><br>
+          <% }%>
+        </div>
+      </div>
     </div>
+  </div>
 
 </div>
 
 <script>
-    $(function () {
-        $('#follow').on('click', function (event) {
-            $('#follow').text('Following');
-            var user_id = $('#follow').attr("data-id")
-            $.ajax({
-                type: 'PUT',
-                crossDomain: true,
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                },
-                data: JSON.stringify({
-                    "followed_user_id": user_id,
-                    "follow_status": true
-                }),
-                contentType: 'application/json',
-                url: '/follows',
-                success: function (data) {
-                    console.log('success');
-                }
-            });
-        });
+  $(function () {
+    $('#follow').on('click', function (event) {
+      $('#follow').text('Following');
+      var user_id = $('#follow').attr("data-id")
+      $.ajax({
+        type: 'PUT',
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        data: JSON.stringify({
+          "followed_user_id": user_id,
+          "follow_status": true
+        }),
+        contentType: 'application/json',
+        url: '/follows',
+        success: function (data) {
+          console.log('success');
+        }
+      });
     });
+  });
 </script>
