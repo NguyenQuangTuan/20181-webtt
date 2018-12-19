@@ -129,6 +129,10 @@
     //   }
     // });
     let isRequestLike = false;
+    let user = JSON.parse($('.detail').attr('data-user'))
+    let avatar_url = user.avatar_url || '/img/ava-default.png';
+    let { full_name, user_id } = user
+    let href = `/users/${user_id}`
     //like
     $('#like').on('click', function (event) {
       event.preventDefault();
@@ -200,14 +204,18 @@
         success: function (data) {
           console.log(data);
           $(`#textarea-${review_id}`).val('');
-          let { full_name, content } = data;
+          let { content } = data;
           let time = 'Vừa xong'
           var newReply = '<div class=" row comment1">' +
             '        <div class="col-sm-1">' +
-            '          <img class="img" src="/img/ava-default.png" alt="ảnh">' +
+            `           <a href="${href}">` +
+            `          <img class="img" src="${avatar_url}" alt="ảnh">` +
+            ' </a>' +
             '        </div>' +
             '        <div class="col-sm-11">' +
+            `           <a href="${href}">` +
             `          <label>${full_name}</label>` +
+            ' </a>' +
             `          <span>${time}</span>` +
             '          <br>' +
             `          <span>${content}</span><br>` +
@@ -238,28 +246,21 @@
         success: function (data) {
           console.log(data);
           $('#comment-content').val('')
-          let { full_name, content } = data;
+          let { content } = data;
           let time = 'Vừa xong'
           var newCommentHtml = '<div class=" row comment">' +
             '        <div class="col-sm-1">' +
-            '          <img class="img" src="/img/ava-default.png" alt="ảnh">' +
+            `           <a href="${href}">` +
+            `          <img class="img" src="${avatar_url}" alt="ảnh">` +
+            '           </a>' +
             '        </div>' +
             '        <div class="col-sm-11">' +
-            `          <label>${full_name}</label>` +
-            `          <span>${time}</span>` +
+            `           <a href="${href}">` +
+            `             <label>${full_name}</label>` +
+            '           </a>' +
+            `           <span>${time}</span>` +
             '          <br>' +
             `          <span>${content}</span><br>` +
-            '' +
-            '' +
-            '' +
-            '          <div class="row comment1">' +
-            '            <div class="col-sm-1">' +
-            '              <img src="/img/ava-default.png" alt="ảnh">' +
-            '            </div>' +
-            '            <div class="col-sm-11">' +
-            '              <textarea placeholder="Ý ki?n (markdown)">' +
-            '            </div>' +
-            '            </div>' +
             '            </div>' +
             '            </div>'
           $("#comment-list").append(newCommentHtml);
