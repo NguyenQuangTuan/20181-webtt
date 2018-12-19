@@ -4,7 +4,7 @@
       <div class="detailView">
         <label>
           <%= post.title %></label><br>
-        <span><img src="<%= post.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh"></span>
+        <span><img class="cmt-img" src="<%= post.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh"></span>
         <span>
           <%= post.user.full_name%> viết ngày 12/7/2018</span>
         <br />
@@ -18,7 +18,6 @@
         <div class=" row comment">
           <div class="col-sm-1">
             <a href="<%= '/users/' +review.user.user_id%>">
-
               <img class="img" src="<%= review.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
             </a>
           </div>
@@ -41,7 +40,7 @@
                 <div class="col-sm-1">
                   <a href="<%= '/users/' +sub_review.user.user_id%>">
 
-                    <img src="<%= sub_review.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
+                    <img class="img" src="<%= sub_review.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
                   </a>
                 </div>
                 <div class="col-sm-11">
@@ -61,7 +60,7 @@
             </div>
             <div class="row comment1">
               <div class="col-sm-1">
-                <img src="<%= user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
+                <img class="img" src="<%= user.avatar_url || '/img/ava-default.png'%>" alt="ảnh">
               </div>
               <div class="col-sm-11">
                 <textarea id="<%= 'textarea-'+review.review_id%>" placeholder="Ý kiến (markdown)"></textarea>

@@ -9,7 +9,7 @@
     color: #337ab7;
 }
 
-.detailView img {
+.detailView .cmt-img {
     height: 20px;
     padding-right: 2px;
     border-radius: 50%; 
@@ -63,14 +63,8 @@
     font-size: 15px;
 }
 
-
-
 .comment1 img{
     margin-top: 15px;
-    height: 38px;
-    padding-right: 2px;
-    border-radius: 50%; 
-    width: 45px; 
 }
 
 .comment1 label{
