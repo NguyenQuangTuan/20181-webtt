@@ -60,11 +60,11 @@
 
       if (currentState) {
         $('#follow-text').text(' Follow');
-        // $('#num-follow').text(--followCount)
+        $('#num-follow').text(--followCount)
 
       } else {
         $('#follow-text').text(' Following');
-        // $('#num-follow').text(++followCount)
+        $('#num-follow').text(++followCount)
       }
       var user_id = $('#follow').attr("data-id")
       $.ajax({
@@ -80,8 +80,15 @@
         contentType: 'application/json',
         url: '/follows',
         success: function (data) {
-          console.log('success');
+          // console.log('success');
           isRequestFollow = false;
+          // if (currentState) {
+          //   $('#follow-text').text(' Follow');
+          //   $('#num-follow').text(--followCount)
+          // } else {
+          //   $('#follow-text').text(' Following');
+          //   $('#num-follow').text(++followCount)
+          // }
         },
         error: function (error) {
           alert(error.message);
