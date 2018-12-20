@@ -38,6 +38,9 @@ module.exports = class ProductService {
       .headers({ authorization })
 
     req.end(res => {
+      if(res.error){
+        return callback(res.error)
+      }
       return callback(res.error, res.body.result)
     })
   }

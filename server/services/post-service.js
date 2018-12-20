@@ -56,7 +56,10 @@ module.exports = class PostService {
       .query(Object.assign({}, query, { fields: select, offset, limit, sort }))
 
     req.end(res => {
-      return callback(res.error, res.body.posts)
+      if(res.error){
+        return callback(res.error, null)
+      }
+      return callback(null, res.body.posts)
     })
   }
 

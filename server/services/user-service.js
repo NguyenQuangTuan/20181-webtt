@@ -9,6 +9,8 @@ module.exports = class UserService {
     this.find_one = this.find_one.bind(this)
     this.get_me = this.get_me.bind(this)
     this.get_follows = this.get_follows.bind(this)
+    this.get_follows_by_uid = this.get_follows_by_uid.bind(this)
+    this.follow = this.follow.bind(this)
   }
 
   autocomplete(condition = {}, callback) {
@@ -25,7 +27,7 @@ module.exports = class UserService {
 
   find_all(condition = {}, select = null, offset = 0, limit = null, sort = {}, callback) {
     let { user_ids, full_name } = condition
-    if(user_ids && user_ids.length > 0) user_ids = user_ids.join(',')
+    if (user_ids && user_ids.length > 0) user_ids = user_ids.join(',')
     let query = {}
     let list = Object.assign({}, { user_ids, full_name })
     let list_key = Object.keys(list)
@@ -65,6 +67,9 @@ module.exports = class UserService {
       .headers({ authorization })
 
     req.end(res => {
+      if (res.error) {
+        return callback(res.error, null)
+      }
       return callback(res.error, res.body.user)
     })
   }
@@ -75,7 +80,36 @@ module.exports = class UserService {
       .headers({ authorization })
 
     req.end(res => {
+      if (res.error) {
+        return callback(res.error, null)
+      }
       return callback(res.error, res.body.user_ids)
+    })
+  }
+  get_follows_by_uid(user_id, callback) {
+    let url = `${api_url}/follows/followme/userid?user_id=${user_id}`
+    let req = unirest.get(url)
+
+    req.end(res => {
+      if (res.error) {
+        return callback(res.error, null)
+      }
+      return callback(res.error, res.body.user_ids)
+    })
+  }
+
+  follow(authorization, follow_data, callback) {
+    let url = `${api_url}/follows`
+    let req = unirest.put(url)
+      .headers({ authorization })
+      .type('json')
+      .send(follow_data)
+
+    req.end(res => {
+      if (res.error) {
+        return callback(res.error, null)
+      }
+      return callback(res.error, res.body.follow)
     })
   }
 }

@@ -5,6 +5,8 @@ module.exports = class UserController {
     this.find_one = this.find_one.bind(this)
     this.get_me = this.get_me.bind(this)
     this.get_follows = this.get_follows.bind(this)
+    this.get_follows_by_uid = this.get_follows_by_uid.bind(this)
+    this.follow = this.follow.bind(this)
   }
 
   find_one(req, res, next) {
@@ -38,6 +40,30 @@ module.exports = class UserController {
       if (err) next(err)
       else {
         res.follows = follows
+        next()
+      }
+    })
+  }
+  
+  get_follows_by_uid(req, res, next) {
+    let {user_id} = req.params
+
+    this.user_service.get_follows_by_uid(user_id, (err, follows) => {
+      if (err) next(err)
+      else {
+        res.follows = follows
+        next()
+      }
+    })
+  }
+
+  follow(req, res, next) {
+    let authorization = res.token
+    let follow_data = req.body;
+    this.user_service.follow(authorization, follow_data, (err, follow) => {
+      if (err) next(err)
+      else {
+        res.follow = follow
         next()
       }
     })

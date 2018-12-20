@@ -1,51 +1,71 @@
 <div class="user-page">
-    <div class="col-sm-8">
-        <div class="single-post">
-            <% posts.map(post => { %>
-            <div class="new-view">
-                <a href="<%= '/posts/'+ post.post_id %>"><label>
-                        <%= post.title %></label></a>
-                <span><%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-                <p>
-                    <%= post.short_content%>
-                </p>
-                <p>
-                    <%= locals.settingTab%>
-                </p>
-            </div>
-            <% } )%>
-            <!-- <div class="button">
+  <div class="col-sm-8">
+    <div class="single-post">
+      <% posts.map(post => { %>
+      <div class="new-view">
+        <a href="<%= '/posts/'+ post.post_id %>"><label>
+            <%= post.title %></label></a>
+        <span>
+          <%= post.total_like %> <i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+        <p>
+          <%= post.short_content%>
+        </p>
+        <p>
+          <%= locals.settingTab%>
+        </p>
+      </div>
+      <% } )%>
+      <!-- <div class="button">
                 <button><a>Xem tiếp</a></button>
             </div> -->
-        </div>
     </div>
   </div>
-  <div class="col-sm-1"></div>
-  <div class="col-sm-3">
-    <div class="meta-profile">
-      <div class="row">
-        <div class="col-sm-5">
-          <img src="<%= target_user.avatar_url || '/img/ava-default.png' %>" alt="ảnh">
-        </div>
-        <div class="col-sm-7">
-          <p><label>
-              <%= target_user.full_name%></label></p>
-          <span>
-            <%= follows.length%> người theo dõi</span>
-          <% if(user.user_id!=target_user.user_id){%>
-          <button id="follow" data-id="<%= target_user.user_id%>"><i class="ti-rss-alt"></i> &nbsp Follow</button><br>
-          <% }%>
-        </div>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-3">
+  <div class="meta-profile">
+    <div class="row">
+      <div class="col-sm-5">
+        <img src="<%= target_user.avatar_url || '/img/ava-default.png' %>" alt="ảnh">
+      </div>
+      <div class="col-sm-7">
+        <p><label>
+            <%= target_user.full_name%></label></p>
+        <span id="num-follow">
+          <%= follows.length%> </span> người theo dõi
+        <% if(user.user_id!=target_user.user_id){%>
+        <button id="follow" data-id="<%= target_user.user_id%>"><i class="ti-rss-alt"></i>&nbsp<span id="follow-text">
+            <%= is_following%></span>
+        </button><br>
+        <% }%>
+
       </div>
     </div>
   </div>
+</div>
 
 </div>
 
 <script>
   $(function () {
+    let isRequestFollow = false;
     $('#follow').on('click', function (event) {
-      $('#follow').text('Following');
+      if (isRequestFollow) {
+        return;
+      }
+      isRequestFollow = true;
+      let follow_state = $('#follow-text').text().trim();
+      let currentState = follow_state == 'Following';
+      let followCount = Number($('#num-follow').text()) || 0
+
+      if (currentState) {
+        $('#follow-text').text(' Follow');
+        $('#num-follow').text(--followCount)
+
+      } else {
+        $('#follow-text').text(' Following');
+        $('#num-follow').text(++followCount)
+      }
       var user_id = $('#follow').attr("data-id")
       $.ajax({
         type: 'PUT',
@@ -55,12 +75,30 @@
         },
         data: JSON.stringify({
           "followed_user_id": user_id,
-          "follow_status": true
+          "follow_status": !currentState
         }),
         contentType: 'application/json',
         url: '/follows',
         success: function (data) {
           console.log('success');
+          isRequestFollow = false;
+          if (currentState) {
+            $('#follow-text').text(' Follow');
+            $('#num-follow').text(--followCount)
+          } else {
+            $('#follow-text').text(' Following');
+            $('#num-follow').text(++followCount)
+          }
+        },
+        error: function (error) {
+          alert(error.message);
+          if (currentState) {
+            $('#follow-text').text(' Following');
+            $('#num-follow').text(++followCount)
+          } else {
+            $('#follow-text').text(' Follow');
+            $('#num-follow').text(--followCount)
+          }
         }
       });
     });

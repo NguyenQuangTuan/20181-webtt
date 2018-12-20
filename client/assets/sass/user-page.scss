@@ -5,11 +5,13 @@
 
 .meta-profile button{
     border: 1px solid #00b5ad;
-    background: white;
+    background: #fff;
     color: #00b5ad;
     border-radius: 20px;
-    width: 95px;
+    width: auto;
+    padding: 4px 10px;
     height: 30px;
+    vertical-align: middle;
     margin-bottom: 3px;
 }
 
