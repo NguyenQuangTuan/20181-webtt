@@ -13,12 +13,18 @@ module.exports = class NotificationService {
 
     save_refresh_token(authorization, refresh_token, callback) {
         let url = `${api_url}/notifcations-users/users-refresh-token`
+        if(!refresh_token){
+            return callback(null, false)
+        }
         let req = unirest.put(url)
             .headers({ authorization })
             .type('json')
             .send({ refresh_token })
 
         req.end(res => {
+            if(res.error){
+                return callback(res.error)
+            }
 
             return callback(res.error, res.body.result.success)
         })
@@ -43,6 +49,9 @@ module.exports = class NotificationService {
         let req = unirest.get(url)
             .headers({ authorization })
         req.end(res => {
+            if(res.error){
+                return callback(res.error)
+            }
             return callback(res.error, res.body.count)
         })
     }
@@ -55,6 +64,9 @@ module.exports = class NotificationService {
             .send({ notifications })
 
         req.end(res => {
+            if(res.error){
+                return callback(res.error)
+            }
             return callback(res.error, res.body.success)
         })
     }
@@ -66,6 +78,9 @@ module.exports = class NotificationService {
             .type('json')
 
         req.end(res => {
+            if(res.error){
+                return callback(res.error)
+            }
             return callback(res.error, res.body.success)
         })
     }
@@ -77,6 +92,9 @@ module.exports = class NotificationService {
             .query({ page, size })
 
         req.end(res => {
+            if(res.error){
+                return callback(res.error)
+            }
             return callback(res.error, res.body.notifications)
         })
     }
