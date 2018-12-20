@@ -60,11 +60,11 @@
 
       if (currentState) {
         $('#follow-text').text(' Follow');
-        $('#num-follow').text(--followCount)
+        // $('#num-follow').text(--followCount)
 
       } else {
         $('#follow-text').text(' Following');
-        $('#num-follow').text(++followCount)
+        // $('#num-follow').text(++followCount)
       }
       var user_id = $('#follow').attr("data-id")
       $.ajax({

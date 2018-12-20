@@ -5,7 +5,7 @@
         <%if(posts.length > 0) { %>
         <div>
           <label>Bài viết</label>
-          
+
         </div>
 
         <% posts.map(post => { %>
@@ -39,17 +39,21 @@
 
         <% if(users.length > 0) { %>
         <label>Tác giả</label>
-        <% users.map(user => { %>
+        <% users.map(u => { %>
         <div class="new-view">
           <div class="row">
             <div class="col-sm-1">
-              <img class="img" src="<%= user.avatar_url || '/img/test.jpg' %>" alt="ảnh">
+              <img class="img" src="<%= u.avatar_url || '/img/ava-default.png' %>" alt="ảnh">
             </div>
             <div class="col-sm-11">
-              <a class="title" href="#">
-                <label>
-                  <%= user.full_name %>
-                </label>
+              <% if(user.user_id == u.user_id) { %>
+              <a class="title" href="/mypage" user-id="<%= user.user_id%>" u-id="<%= u.user_id%>">
+              <% } else{ %>
+              <a class="title" href="/users/<%= u.user_id%>" user-id="<%= user.user_id%>" u-id="<%= u.user_id%>">
+              <% } %>
+              <label>
+                <%= u.full_name %>
+              </label>
               </a>
             </div>
           </div>
