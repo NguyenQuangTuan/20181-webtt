@@ -6,7 +6,7 @@
           <%= post.title %></label><br>
         <span><img class="cmt-img" src="<%= post.user.avatar_url || '/img/ava-default.png'%>" alt="ảnh"></span>
         <span>
-          <%= post.user.full_name%> viết ngày 12/7/2018</span>
+          <%= post.user.full_name%> viết ngày <%= post.created_at%></span>
         <br />
         <p>
           <%- post.content%>
